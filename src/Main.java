@@ -16,7 +16,7 @@ public class Main extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-					prima_finestra frame = new prima_finestra(); // Prova
+					prima_finestra frame = new prima_finestra(); 
 					frame.setVisible(true);
 			}
 		});
