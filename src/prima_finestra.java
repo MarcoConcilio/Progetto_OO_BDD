@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,56 +13,68 @@ import java.awt.event.ActionEvent;
 
 public class prima_finestra extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel pannello_base;
 	private JPasswordField passwordField;
-	private JTextField textField;
-	public seconda_finestra finestra2;
-	
-	
+	private JTextField textUsername;
+	public finestra_medico finestra2;
+	String nome_utente;
+	boolean flag = false;
 	/**
 	 * Create the frame.
 	 */
 	public prima_finestra() {
-		finestra2 = new seconda_finestra(this);
+		finestra2 = new finestra_medico(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 483, 396);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		pannello_base = new JPanel();
+		pannello_base.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(pannello_base);
+		pannello_base.setLayout(null);
+		pannello_base.setBackground(Color.pink);
 		
 		JLabel lblNewLabel = new JLabel("RECUPERO DI MAMME");
 		lblNewLabel.setBounds(146, 23, 163, 14);
-		contentPane.add(lblNewLabel);
+		pannello_base.add(lblNewLabel);
 		
-		JLabel USERNAME = new JLabel("USERNAME");
-		USERNAME.setBounds(69, 77, 67, 14);
-		contentPane.add(USERNAME);
+		JLabel username = new JLabel("USERNAME");
+		username.setBounds(69, 77, 67, 14);
+		pannello_base.add(username);
 		
 		JLabel password = new JLabel("PASSWORD");
 		password.setBounds(61, 134, 75, 14);
-		contentPane.add(password);
+		pannello_base.add(password);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(146, 131, 138, 20);
-		contentPane.add(passwordField);
+		pannello_base.add(passwordField);
 		
-		textField = new JTextField();
-		textField.setBounds(146, 74, 138, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textUsername = new JTextField();
+		textUsername.setBounds(146, 74, 138, 20);
+		pannello_base.add(textUsername);
+		textUsername.setColumns(10);
 		
 		JButton accesso = new JButton("Accedi");
 		accesso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				finestra2.setVisible(true);
+				/*do{
+					nome_utente = textUsername.getText();
+					
+					if(nome_utente == "Admin") {
+						setVisible(false);
+						finestra2.setVisible(true);
+					}
+					else {
+						System.out.println("Inserisci nome adatto");
+					}
+				}while(flag == true);*/
 			}
 		});
 		accesso.setBounds(220, 162, 89, 23);
-		contentPane.add(accesso);
+		pannello_base.add(accesso);
 	}
 
 }

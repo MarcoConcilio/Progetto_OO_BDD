@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,6 +20,6 @@ public class Main extends JFrame {
 					prima_finestra frame = new prima_finestra(); 
 					frame.setVisible(true);
 			}
-		});
+		});		
 	}
 }
