@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -17,8 +19,8 @@ public class MainFrame extends JFrame {
 	private JPanel pannelloBase;
 	private JTextField textUsername;
 	private JPasswordField passwordField;
-	public String nomeDottore = "Dott Admin";
-	public String passDottore = "Dott Pass";
+	public String nomeDottore = "a";
+	public String passDottore = "a";
 
 	/**
 	 * Launch the application.
@@ -40,7 +42,7 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
-		finestra_dottore finestra2 = new finestra_dottore(this);
+		finestraMedicaPrincipale finestra2 = new finestraMedicaPrincipale(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 300, 524, 437);
@@ -84,11 +86,11 @@ public class MainFrame extends JFrame {
 						finestra2.setVisible(true);
 					}
 					else {
-						System.out.println("Password errata");
+						JOptionPane.showMessageDialog(null, "Password errata");					
 					}
 				}
 				else {
-					System.out.println("Nome utente errato");
+					JOptionPane.showMessageDialog(null, "Nome utente errato");
 				}
 				//FINE METODO DA PORTARE NEL CONTROLLER
 			
