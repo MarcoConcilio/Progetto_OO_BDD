@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class centro_di_recupero {
 	private String nome;
@@ -6,24 +7,38 @@ public class centro_di_recupero {
 	private String idSede; //primary key
 	private String e_mail;
 	
+	ArrayList<personale> personale = new ArrayList<personale>();
+	ArrayList<tartaruga> tartarugaRecupero = new ArrayList<tartaruga>();
+	
 	//costruttore
-	public centro_di_recupero(String nome, String indirizzo, String numero_telefono, String idSede, String e_mail) {
-		super();
-		this.nome = nome;
-		this.indirizzo = indirizzo;
-		this.numero_telefono = numero_telefono;
-		this.idSede = idSede;
-		this.e_mail = e_mail;
-	}
-
+	
+	
+	
+	
 	
 	//getter and setter
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public ArrayList<personale> getPersonale() {
+		return personale;
+	}
+
+	public void setPersonale(ArrayList<personale> personale) {
+		this.personale = personale;
+	}
+
+	public ArrayList<tartaruga> getTartarugaRecupero() {
+		return tartarugaRecupero;
+	}
+
+	public void setTartarugaRecupero(ArrayList<tartaruga> tartarugaRecupero) {
+		this.tartarugaRecupero = tartarugaRecupero;
 	}
 
 	public String getIndirizzo() {

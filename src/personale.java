@@ -7,17 +7,11 @@ public class personale {
 	private String cognome;
 	private String CF; 
 	private String matricola; //primary key
-	private typePersonale personale;
+	private typePersonale lavoratore;
 	
 	
 	//costruttore
-	public personale(String nome, String cognome, String cF, String matricola, typePersonale personale) {
-		this.nome = nome;
-		this.cognome = cognome;
-		CF = cF;
-		this.matricola = matricola;
-		this.personale = personale;
-	}
+	
 
 	//getter and setter
 	public String getNome() {
@@ -53,11 +47,11 @@ public class personale {
 	}
 	
 	public typePersonale getPersonale() {
-		return personale;
+		return lavoratore;
 	}
 	
-	public void setPersonale(typePersonale personale) {
-		this.personale = personale;
+	public void setPersonale(typePersonale lavoratore) {
+		this.lavoratore = lavoratore;
 	}
 	
 	
