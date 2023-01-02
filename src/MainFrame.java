@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class MainFrame extends JFrame {
 
@@ -42,38 +43,40 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		setResizable(false);
 		finestraMedicaPrincipale finestra2 = new finestraMedicaPrincipale(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(600, 300, 524, 437);
+		setBounds(600, 300, 499, 449);
 		pannelloBase = new JPanel();
-		pannelloBase.setBackground(new Color(255, 128, 128));
+		pannelloBase.setBackground(new Color(165, 206, 218));
 		pannelloBase.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pannelloBase);
 		pannelloBase.setLayout(null);
 		
 		JLabel jlabelUsername = new JLabel("Username");
-		jlabelUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		jlabelUsername.setBounds(64, 80, 74, 14);
+		jlabelUsername.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		jlabelUsername.setBounds(23, 192, 92, 20);
 		pannelloBase.add(jlabelUsername);
 		
 		textUsername = new JTextField();
-		textUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textUsername.setBounds(168, 79, 162, 20);
+		textUsername.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textUsername.setBounds(113, 188, 172, 28);
 		pannelloBase.add(textUsername);
 		textUsername.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Password");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(64, 131, 74, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setBounds(31, 231, 84, 20);
 		pannelloBase.add(lblNewLabel);
 		
 		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		passwordField.setBounds(168, 130, 162, 20);
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		passwordField.setBounds(113, 227, 172, 28);
 		pannelloBase.add(passwordField);
 		
 		JButton accedi = new JButton("Accedi");
+		accedi.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		accedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//setVisible(false);
@@ -96,8 +99,23 @@ public class MainFrame extends JFrame {
 			
 			}	
 		});
-		accedi.setBounds(209, 174, 89, 23);
+		accedi.setBounds(142, 266, 122, 28);
 		pannelloBase.add(accedi);
+		
+		JLabel lblNomeAzienda = new JLabel("TURTLANET");
+		lblNomeAzienda.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 35));
+		lblNomeAzienda.setBounds(29, 59, 208, 71);
+		pannelloBase.add(lblNomeAzienda);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\gaeco\\OneDrive\\Desktop\\202691-illustrazione-di-tartarughe-vettoriale.png"));
+		lblNewLabel_1.setBounds(294, 17, 201, 169);
+		pannelloBase.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\gaeco\\OneDrive\\Desktop\\6UCP6P7T2hdXq6fMoAAAAAElFTkSuQmCC (1) (1) (1).png"));
+		lblNewLabel_2.setBounds(10, 328, 67, 71);
+		pannelloBase.add(lblNewLabel_2);
 	}
 }
 
