@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-18">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="D:/Uni Marco/postgressJVE/postgresql-42.5.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/gaeco/.p2/pool/plugins/org.eclipse.osgi_3.18.100.v20220817-1601.jar" sourcepath="C:/Users/gaeco/.p2/pool/plugins/org.eclipse.osgi_3.18.100.v20220817-1601.jar"/>
 	<classpathentry kind="lib" path="C:/Users/gaeco/.p2/pool/plugins/org.eclipse.core.commands_3.10.200.v20220512-0851.jar" sourcepath="C:/Users/gaeco/.p2/pool/plugins/org.eclipse.core.commands_3.10.200.v20220512-0851.jar"/>
 	<classpathentry kind="lib" path="C:/Users/gaeco/.p2/pool/plugins/org.eclipse.equinox.common_3.16.200.v20220817-1601.jar" sourcepath="C:/Users/gaeco/.p2/pool/plugins/org.eclipse.equinox.common_3.16.200.v20220817-1601.jar"/>

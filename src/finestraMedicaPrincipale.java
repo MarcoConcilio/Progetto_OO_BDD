@@ -24,7 +24,7 @@ public class finestraMedicaPrincipale extends JFrame {
 		finestraRiammPrimoacc finestramezzo = new finestraRiammPrimoacc(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(600, 300, 730, 268);
+		setBounds(600, 300, 704, 441);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -39,11 +39,8 @@ public class finestraMedicaPrincipale extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		button.setBounds(463, 46, 217, 23);
+		button.setBounds(428, 216, 217, 23);
 		contentPane.add(button);
 		
-		
-		
 	}
-
 }

@@ -24,22 +24,6 @@ public class MainFrame extends JFrame {
 	public String passDottore = "a";
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public MainFrame() {
@@ -54,20 +38,20 @@ public class MainFrame extends JFrame {
 		setContentPane(pannelloBase);
 		pannelloBase.setLayout(null);
 		
-		JLabel jlabelUsername = new JLabel("Username");
-		jlabelUsername.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		jlabelUsername.setBounds(23, 192, 92, 20);
-		pannelloBase.add(jlabelUsername);
+		JLabel jlabelMatricola = new JLabel("Matricola");
+		jlabelMatricola.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		jlabelMatricola.setBounds(35, 196, 92, 20);
+		pannelloBase.add(jlabelMatricola);
 		
 		textUsername = new JTextField();
 		textUsername.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textUsername.setBounds(113, 188, 172, 28);
+		textUsername.setBounds(113, 192, 172, 28);
 		pannelloBase.add(textUsername);
 		textUsername.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Password");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(31, 231, 84, 20);
+		lblNewLabel.setBounds(35, 227, 84, 20);
 		pannelloBase.add(lblNewLabel);
 		
 		passwordField = new JPasswordField();
@@ -89,17 +73,17 @@ public class MainFrame extends JFrame {
 						finestra2.setVisible(true);
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Password errata");					
+						JOptionPane.showMessageDialog(null, "Credenziali errate");					
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Nome utente errato");
+					JOptionPane.showMessageDialog(null, "Credenziali errate");
 				}
 				//FINE METODO DA PORTARE NEL CONTROLLER
 			
 			}	
 		});
-		accedi.setBounds(142, 266, 122, 28);
+		accedi.setBounds(136, 266, 122, 28);
 		pannelloBase.add(accedi);
 		
 		JLabel lblNomeAzienda = new JLabel("TURTLANET");
@@ -108,12 +92,12 @@ public class MainFrame extends JFrame {
 		pannelloBase.add(lblNomeAzienda);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\gaeco\\OneDrive\\Desktop\\202691-illustrazione-di-tartarughe-vettoriale.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("D:\\Uni Marco\\Tartarughe_Marine\\images\\202691-illustrazione-di-tartarughe-vettoriale.png"));
 		lblNewLabel_1.setBounds(294, 17, 201, 169);
 		pannelloBase.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\gaeco\\OneDrive\\Desktop\\6UCP6P7T2hdXq6fMoAAAAAElFTkSuQmCC (1) (1) (1).png"));
+		lblNewLabel_2.setIcon(new ImageIcon("D:\\Uni Marco\\Tartarughe_Marine\\images\\6UCP6P7T2hdXq6fMoAAAAAElFTkSuQmCC (1) (1) (1).png"));
 		lblNewLabel_2.setBounds(10, 328, 67, 71);
 		pannelloBase.add(lblNewLabel_2);
 	}
