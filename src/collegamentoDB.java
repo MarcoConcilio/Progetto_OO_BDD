@@ -42,7 +42,7 @@ public class collegamentoDB
                 // registra il driver
                 Class.forName("org.postgresql.Driver");
                 // chiama il DriverManager e chiedi la connessione
-                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=bdd_test_schema", "postgres", pwd);
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Gestione_tartarughe_marine", "postgres", "admin");
             }
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();

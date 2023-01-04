@@ -39,7 +39,7 @@ public class finestraMedicaPrincipale extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		button.setBounds(428, 216, 217, 23);
+		button.setBounds(461, 368, 217, 23);
 		contentPane.add(button);
 		
 	}
