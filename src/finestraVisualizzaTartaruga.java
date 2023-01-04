@@ -4,17 +4,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class finestraAltriLavoratori extends JFrame {
+public class finestraVisualizzaTartaruga extends JFrame {
 
 	private JPanel contentPane;
-	public finestraLOGIN finestraMain;
-
+	public finestraVisualizzaTartaruga fnestraPrimaMedico;
+	
 	/**
 	 * Create the frame.
 	 */
-	public finestraAltriLavoratori(finestraLOGIN m1) {
-		finestraMain = m1;
-		
+	public finestraVisualizzaTartaruga(finestraVisualizzaTartaruga f1) {
+		fnestraPrimaMedico = f1;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

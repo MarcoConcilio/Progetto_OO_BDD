@@ -12,7 +12,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame frame = new MainFrame();
+					finestraLOGIN frame = new finestraLOGIN();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

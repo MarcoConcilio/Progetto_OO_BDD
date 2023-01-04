@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
-public class MainFrame extends JFrame {
+public class finestraLOGIN extends JFrame {
 
 	private JPanel pannelloBase;
 	private JTextField textUsername;
@@ -27,11 +27,11 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 
-	controller controllore = new controller();
+	controller control = new controller();
 
-	public MainFrame() {
+	public finestraLOGIN() {
 		setResizable(false);
-		finestraMedicaPrincipale finestra2 = new finestraMedicaPrincipale(this);
+		primaFinestraMedico finestra2 = new primaFinestraMedico(this);
 		finestraAltriLavoratori finestraAltri = new finestraAltriLavoratori(this);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,22 +58,22 @@ public class MainFrame extends JFrame {
 		accedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				stringa = textUsername.getText();
-				if (controllore.logIn(textUsername.getText())) {
-					if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
+//				stringa = textUsername.getText();
+//			if (control.logIn(textUsername.getText())) {
+//					if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
 						setVisible(false);
 						finestra2.setVisible(true);
-					} // da aggiungere una pagina admin che permette di aggiungere lavoratori al database
-						
-					else { // altrimenti ti porta nella pagina degli altri lavoratori
-						setVisible(false);
-						finestraAltri.setVisible(true);
-					}
-				}
-
-				else {
-					JOptionPane.showMessageDialog(null, "Credenziali errate");
-				}
+//					} // da aggiungere una pagina admin che permette di aggiungere lavoratori al database
+//						
+//					else { // altrimenti ti porta nella pagina degli altri lavoratori
+//						setVisible(false);
+//						finestraAltri.setVisible(true);
+//					}
+//				}
+//
+//				else {
+//					JOptionPane.showMessageDialog(null, "Credenziali errate.");
+//				}
 
 			}
 

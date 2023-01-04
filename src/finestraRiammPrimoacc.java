@@ -11,13 +11,13 @@ import java.awt.Font;
 public class finestraRiammPrimoacc extends JFrame {
 
 	private JPanel contentPane;
-	public finestraMedicaPrincipale finestraMezzo;
+	public primaFinestraMedico finestraMezzo;
 	/**
 	 * Create the frame.
 	 */
-	public finestraRiammPrimoacc(finestraMedicaPrincipale f1) {
+	public finestraRiammPrimoacc(primaFinestraMedico f1) {
 		finestraMezzo = f1;
-		cartellaMedica1 cartmedica1 = new cartellaMedica1(this);
+		finestraCartellaClinica1 cartmedica1 = new finestraCartellaClinica1(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 300, 450, 300);
