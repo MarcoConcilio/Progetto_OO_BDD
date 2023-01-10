@@ -1,5 +1,8 @@
 import java.awt.EventQueue;
 
+import CollegamentoDataBase.collegamentoDB;
+import GUI.finestraLOGIN;
+
 public class Main {
 	
 	public static void main(String[] args) {

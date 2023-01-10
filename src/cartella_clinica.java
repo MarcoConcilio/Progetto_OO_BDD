@@ -1,28 +1,21 @@
-enum typeStato{
-	testa, occhi, naso, becco, collo, pinne, coda
-}
-
 public class cartella_clinica {
 	private String specie;
 	private String lunghezza;
 	private String larghezza;
 	private String peso;
 	private String luogoRitrovamento;
-	private typeStato stato;
-	
-	
-	//costruttore
-	public cartella_clinica(String specie, String lunghezza, String larghezza, String peso, String luogoRitrovamento, typeStato stato) {
+
+	// costruttore
+	public cartella_clinica(String specie, String lunghezza, String larghezza, String peso, String luogoRitrovamento) {
 		this.specie = specie;
 		this.lunghezza = lunghezza;
 		this.larghezza = larghezza;
 		this.peso = peso;
 		this.luogoRitrovamento = luogoRitrovamento;
-		this.stato = stato;
+
 	}
 
-
-	//getter and setter
+	// getter and setter
 	public String getSpecie() {
 		return specie;
 	}
@@ -30,7 +23,6 @@ public class cartella_clinica {
 	public void setSpecie(String specie) {
 		this.specie = specie;
 	}
-
 
 	public String getLunghezza() {
 		return lunghezza;
@@ -64,15 +56,5 @@ public class cartella_clinica {
 		this.luogoRitrovamento = luogoRitrovamento;
 	}
 
-	public typeStato getStato() {
-		return stato;
-	}
-
-	public void setStato(typeStato stato) {
-		this.stato = stato;
-	}
-	
-	
-	
 	
 }

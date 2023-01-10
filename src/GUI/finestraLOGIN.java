@@ -1,8 +1,12 @@
+package GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.dao;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -14,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import Controller.*;
+
 
 public class finestraLOGIN extends JFrame {
 
@@ -27,7 +33,7 @@ public class finestraLOGIN extends JFrame {
 	 * Create the frame.
 	 */
 
-	controller control = new controller();
+	dao dao = new dao();
 
 	public finestraLOGIN() {
 		setResizable(false);
@@ -58,22 +64,22 @@ public class finestraLOGIN extends JFrame {
 		accedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-//				stringa = textUsername.getText();
-//			if (control.logIn(textUsername.getText())) {
-//					if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
+				stringa = textUsername.getText();
+			if (dao.logIn(textUsername.getText())) {
+					if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
 						setVisible(false);
 						finestra2.setVisible(true);
-//					} // da aggiungere una pagina admin che permette di aggiungere lavoratori al database
-//						
-//					else { // altrimenti ti porta nella pagina degli altri lavoratori
-//						setVisible(false);
-//						finestraAltri.setVisible(true);
-//					}
-//				}
-//
-//				else {
-//					JOptionPane.showMessageDialog(null, "Credenziali errate.");
-//				}
+					} // da aggiungere una pagina admin che permette di aggiungere lavoratori al database
+						
+					else { // altrimenti ti porta nella pagina degli altri lavoratori
+						setVisible(false);
+						finestraAltri.setVisible(true);
+					}
+				}
+
+				else {
+					JOptionPane.showMessageDialog(null, "Credenziali errate.");
+				}
 
 			}
 
@@ -88,13 +94,13 @@ public class finestraLOGIN extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setIcon(new ImageIcon(
-				"D:\\Uni Marco\\Tartarughe_Marine\\images\\202691-illustrazione-di-tartarughe-vettoriale.png"));
+				"images\\202691-illustrazione-di-tartarughe-vettoriale.png"));
 		lblNewLabel_1.setBounds(294, 17, 201, 169);
 		pannelloBase.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setIcon(new ImageIcon(
-				"D:\\Uni Marco\\Tartarughe_Marine\\images\\6UCP6P7T2hdXq6fMoAAAAAElFTkSuQmCC (1) (1) (1).png"));
+				"images\\6UCP6P7T2hdXq6fMoAAAAAElFTkSuQmCC (1) (1) (1).png"));
 		lblNewLabel_2.setBounds(10, 328, 67, 71);
 		pannelloBase.add(lblNewLabel_2);
 	}
