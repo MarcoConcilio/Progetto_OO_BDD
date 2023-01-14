@@ -2,9 +2,13 @@ package Controller;
 
 import javax.swing.JOptionPane;
 
+import dao.cartellaClinicaDao;
+import dao.statoTartarugaDao;
+
 public class controller {
 
-	dao dao = new dao();
+	cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
+	statoTartarugaDao stato_tartarugaDao = new statoTartarugaDao();
 
 	// Metodo per inviare al DATABASE la CARTELLA CLINICA
 	// ---------------------------------------------------------------------------------------------
@@ -12,13 +16,11 @@ public class controller {
 			String specie, String luogoRitr) {
 
 		if (idTart.isEmpty() || numCartella.isEmpty() || nome.isEmpty() || specie.isEmpty() || lunghezza.isEmpty()
-				|| larghezza.isEmpty() || peso.isEmpty())
-		{
+				|| larghezza.isEmpty() || peso.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Devi inserire i parametri obbligatori.");
 		} else { // serve creare prima le tartarughe
 
-			dao.insertCartClin(numCartella, idTart, nome, lunghezza,
-					larghezza, peso, specie, luogoRitr);
+			cartellaClinicaDao.insertCartClin(numCartella, idTart, nome, lunghezza, larghezza, peso, specie, luogoRitr);
 		}
 
 	}
@@ -29,12 +31,11 @@ public class controller {
 			String coda, String idStato) {
 
 		if (testa.isEmpty() || occhi.isEmpty() || naso.isEmpty() || becco.isEmpty() || collo.isEmpty()
-				|| pinne.isEmpty() || coda.isEmpty()) 
-		{
+				|| pinne.isEmpty() || coda.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Devi inserire i parametri obbligatori.");
 		} else {
 			JOptionPane.showMessageDialog(null, "Cartella clinica inviata.");
-			dao.insertStatoTartaruga(testa, occhi, naso, becco, collo, pinne, coda, idStato);
+			stato_tartarugaDao.insertStatoTartaruga(testa, occhi, naso, becco, collo, pinne, coda, idStato);
 		}
 	}
 
