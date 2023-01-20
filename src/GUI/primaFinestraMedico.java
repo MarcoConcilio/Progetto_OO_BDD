@@ -191,7 +191,7 @@ public class primaFinestraMedico extends JFrame {
 		terzoPannello.add(dispCollo);
 		dispCollo.setEditable(false);
 
-		JButton buttonCartClin = new JButton("Crea cartella clinica");
+		JButton buttonCartClin = new JButton("Aggiungi tartaruga");
 		buttonCartClin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// setVisible(false);
@@ -262,21 +262,21 @@ public class primaFinestraMedico extends JFrame {
 		textFieldVisual.setVisible(false);
 		textFieldVisual.setEditable(false);
 
-		JLabel lblNewLabel_9 = new JLabel("Per aggiungere una tartaruga");
+		JLabel lblNewLabel_9 = new JLabel("Clicca qui per aggiungere una");
 		lblNewLabel_9.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel_9.setBounds(41, 242, 259, 32);
+		lblNewLabel_9.setBounds(40, 253, 259, 32);
 		primoPannello.add(lblNewLabel_9);
 
-		lblNewLabel_10 = new JLabel("crea la cartella clinica.");
+		lblNewLabel_10 = new JLabel("tartaruga al DataBase.");
 		lblNewLabel_10.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel_10.setBounds(76, 285, 185, 23);
+		lblNewLabel_10.setBounds(76, 285, 185, 35);
 		primoPannello.add(lblNewLabel_10);
-		
+
 		JLabel lblNewLabel_18 = new JLabel("Visualizza statistiche.");
 		lblNewLabel_18.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
 		lblNewLabel_18.setBounds(437, 280, 172, 32);
 		primoPannello.add(lblNewLabel_18);
-		
+
 		JButton btnNewButton_3 = new JButton("Statistiche");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

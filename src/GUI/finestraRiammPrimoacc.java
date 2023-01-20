@@ -41,10 +41,6 @@ public class finestraRiammPrimoacc extends JFrame {
 		finestraMezzo = f1;
 		finestraCartellaClinica1 cartmedica1 = new finestraCartellaClinica1(this);
 
-//		vascaDao vascaDao = new vascaDao();
-//		tartarugaDao tartarugaDao = new tartarugaDao();
-//		cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
-//		statoTartarugaDao statoTartarugaDao = new statoTartarugaDao();
 
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(600, 300, 526, 390);
@@ -264,29 +260,7 @@ public class finestraRiammPrimoacc extends JFrame {
 		btnNewButton.setBounds(43, 102, 140, 23);
 		pannelloPrimo.add(btnNewButton);
 
-//		inserimentoVasca = new JTextField();
-//		inserimentoVasca.setBounds(303, 213, 167, 20);
-//		pannelloPrimo.add(inserimentoVasca);
-//		inserimentoVasca.setColumns(10);
-//
-//		textFieldNascosto = new JTextField();
-//		textFieldNascosto.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//
-//				stringa = textFieldNascosto.getText();
-//				pannelloPrimo.setVisible(false);
-//				pannelloSecondo.setVisible(true);
-//
-//				textFieldRicerca.setText(null);
-//				textFieldNascosto.setText(null);
-//			}
-//		});
-//		textFieldNascosto.setBounds(23, 241, 212, 31);
-//		pannelloPrimo.add(textFieldNascosto);
-//		textFieldNascosto.setColumns(10);
-//		textFieldNascosto.setVisible(false);
-//		inserimentoVasca.setVisible(false);
+
 
 	}
 }

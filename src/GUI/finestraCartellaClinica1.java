@@ -24,6 +24,9 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JRadioButton;
 
 public class finestraCartellaClinica1 extends JFrame {
@@ -70,6 +73,7 @@ public class finestraCartellaClinica1 extends JFrame {
 	private JTextField textCollo;
 	private JLabel lblNewLabel_1;
 	String stringa;
+	private JTextField textDataIns;
 
 	/**
 	 * Create the frame.
@@ -173,9 +177,11 @@ public class finestraCartellaClinica1 extends JFrame {
 				controller.invioDBSTATO(textTesta.getText(), textOcchi.getText(), textNaso.getText(),
 						textBecco.getText(), textCollo.getText(), textPinne.getText(), textCoda.getText(), stringa);
 				tartarugaDao.insertTarta(textIdTartaruga.getText(), textNome.getText());
-				controller.invioDB(textNumCart.getText(), textIdTartaruga.getText(), textNome.getText(),
+
+				controller.controlloCC(textNumCart.getText(), textIdTartaruga.getText(), textNome.getText(),
 						textLunghezza.getText(), textLarghezza.getText(), textPeso.getText(), textSpecie.getText(),
-						textLuogoRitrovamento.getText());
+						textLuogoRitrovamento.getText(), textDataIns.getText());
+
 				vascaDao.updateIDTartarugaVasca(textIdTartaruga.getText());
 				textTesta.setText(null);
 				textOcchi.setText(null);
@@ -379,6 +385,11 @@ public class finestraCartellaClinica1 extends JFrame {
 		lblNumeroCartella.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNumeroCartella.setBounds(34, 138, 136, 23);
 		pannelloPrimo.add(lblNumeroCartella);
+
+		textDataIns = new JTextField();
+		textDataIns.setBounds(376, 368, 86, 20);
+		pannelloPrimo.add(textDataIns);
+		textDataIns.setColumns(10);
 
 //		textNumCart = new JTextField();
 //		textNumCart.setFont(new Font("Tahoma", Font.PLAIN, 16));

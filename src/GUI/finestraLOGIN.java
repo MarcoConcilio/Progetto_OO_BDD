@@ -63,8 +63,8 @@ public class finestraLOGIN extends JFrame {
 		accedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				personaleDao dao = new personaleDao();
-
+//				personaleDao dao = new personaleDao();
+//
 //				stringa = textUsername.getText();
 //				if (dao.logIn(textUsername.getText())) {
 //					if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
@@ -82,7 +82,7 @@ public class finestraLOGIN extends JFrame {
 //				else {
 //					JOptionPane.showMessageDialog(null, "Credenziali errate.");
 //				}
-//
+
 			}
 
 		});

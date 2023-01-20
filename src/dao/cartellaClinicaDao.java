@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +14,11 @@ public class cartellaClinicaDao {
 	// Sistema di inserimento dentro la cartella clinica
 	// ---------------------------------------------------------------------------------------------
 	public void insertCartClin(String numCartella, String idTart, String nome, String lunghezza, String larghezza,
-			String peso, String specie, String luogoRitr) {
+			String peso, String specie, String luogoRitr, Date dataIngr) {
 
 		try {
 
-			String query = "INSERT INTO cartella_clinica (specie, lunghezza, larghezza, peso, luogo_ritrovamento, id_cartellaclinica, id_tartaruga, nome_tartaruga) VALUES (?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO cartella_clinica (specie, lunghezza, larghezza, peso, luogo_ritrovamento, id_cartellaclinica, id_tartaruga, nome_tartaruga, data_ingresso) VALUES (?,?,?,?,?,?,?,?,?)";
 
 			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
 
@@ -29,7 +30,10 @@ public class cartellaClinicaDao {
 			prepStatementQuery.setString(6, numCartella);
 			prepStatementQuery.setString(7, idTart);
 			prepStatementQuery.setString(8, nome);
+			prepStatementQuery.setDate(9, dataIngr);
 
+			
+			
 			prepStatementQuery.executeQuery();
 
 		} catch (SQLException e) {
