@@ -21,7 +21,7 @@ public class vascaDao {
 			prepStatementQuery.setString(1, NumeroVasca);
 			prepStatementQuery.setString(2, idVasca);
 
-			prepStatementQuery.executeQuery();
+			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class vascaDao {
 
 			prepStatementQuery.setString(1, idTart);
 
-			prepStatementQuery.executeQuery();
+			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

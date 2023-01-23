@@ -8,12 +8,16 @@ import javax.swing.JOptionPane;
 
 import dao.cartellaClinicaDao;
 import dao.statoTartarugaDao;
+import dao.tartarugaDao;
+import dao.vascaDao;
 
 public class controller {
 
 	cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
 	statoTartarugaDao stato_tartarugaDao = new statoTartarugaDao();
-
+	vascaDao vascaDao = new vascaDao();
+	tartarugaDao tartarugaDao = new tartarugaDao();
+	
 	// Metodo per controllare se la cartella clinica è vuota 
 	// ---------------------------------------------------------------------------------------------
 	public void invioDB(String numCartella, String idTart, String nome, String lunghezza, String larghezza, String peso,
@@ -62,6 +66,17 @@ public class controller {
 			e1.printStackTrace();
 		}
 
+	}
+	
+	public void invioTartar(String vasca, String nome, String id) {
+		if(vasca.isEmpty() && nome.isEmpty() && id.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Inserisci i parametri.");
+		}
+		else {
+			vascaDao.insertNumeroVasca(vasca, vasca);
+			tartarugaDao.insertTarta(nome, id);
+			JOptionPane.showMessageDialog(null, "Tartaruga aggiunta correttamente.");
+		}
 	}
 
 }

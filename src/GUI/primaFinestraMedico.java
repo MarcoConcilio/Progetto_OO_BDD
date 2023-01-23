@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 
 public class primaFinestraMedico extends JFrame {
 
-	private JPanel primoPannello, secondoPannello, backGroundPanel, terzoPannello;
+	private JPanel primoPannello, secondoPannello, backGroundPanel, terzoPannello, statPannello;
 	public finestraLOGIN finestraMain;
 	private JTextField textVisualizzaTarta;
 	private JTextField textFieldVisual;
@@ -88,13 +88,31 @@ public class primaFinestraMedico extends JFrame {
 		terzoPannello.setForeground(new Color(0, 0, 0));
 		terzoPannello.setBackground(new Color(165, 206, 218));
 		terzoPannello.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		statPannello = new JPanel();
+		statPannello.setForeground(new Color(0, 0, 0));
+		statPannello.setBackground(new Color(165, 206, 218));
+		statPannello.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		backGroundPanel.add(primoPannello);
 		backGroundPanel.add(terzoPannello);
 		backGroundPanel.add(secondoPannello);
+		backGroundPanel.add(statPannello);
 		primoPannello.setLayout(null);
 		secondoPannello.setLayout(null);
 		terzoPannello.setLayout(null);
+		statPannello.setLayout(null);
+		
+		JButton btnIndietro2_1 = new JButton("Indietro");
+		btnIndietro2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				statPannello.setVisible(false);
+				primoPannello.setVisible(true);
+			}
+		});
+		btnIndietro2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnIndietro2_1.setBounds(10, 11, 101, 23);
+		statPannello.add(btnIndietro2_1);
 
 		btnNewButton_2 = new JButton("Indietro");
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -190,6 +208,11 @@ public class primaFinestraMedico extends JFrame {
 		dispCollo.setBounds(500, 190, 86, 20);
 		terzoPannello.add(dispCollo);
 		dispCollo.setEditable(false);
+		
+		JLabel lblNewLabel_19 = new JLabel("Stato delle parti del corpo della tartaruga:");
+		lblNewLabel_19.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_19.setBounds(74, 69, 358, 32);
+		terzoPannello.add(lblNewLabel_19);
 
 		JButton buttonCartClin = new JButton("Aggiungi tartaruga");
 		buttonCartClin.addActionListener(new ActionListener() {
@@ -215,10 +238,25 @@ public class primaFinestraMedico extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				tartarugaDao tartarugaDao = new tartarugaDao();
+				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
 
 				if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
-					textFieldVisual.setVisible(true);
+					
 					textFieldVisual.setText((textVisualizzaTarta.getText()));
+
+					primoPannello.setVisible(false);
+					secondoPannello.setVisible(true);
+					dispNomeTart.setText(clinicaDao.displayNomeTartaruga(textFieldVisual.getText()));
+					dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
+					dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
+					dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
+					dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
+					dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
+					dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
+					dispLuogoRitrova
+							.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
+
+					textVisualizzaTarta.setText(null);
 				} else {
 					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
 				}
@@ -237,22 +275,7 @@ public class primaFinestraMedico extends JFrame {
 		textFieldVisual.addMouseListener(new MouseAdapter() {
 			@Override // display delle statistiche della tartaruga che selezioni
 			public void mouseClicked(MouseEvent e) {
-				primoPannello.setVisible(false);
-				secondoPannello.setVisible(true);
 
-				tartarugaDao tartarugaDao = new tartarugaDao();
-				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
-
-				dispNomeTart.setText(clinicaDao.displayNomeTartaruga(textFieldVisual.getText()));
-				dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
-				dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
-				dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
-				dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
-				dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
-				dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
-				dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
-
-				textVisualizzaTarta.setText(null);
 			}
 		});
 		textFieldVisual.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -264,7 +287,7 @@ public class primaFinestraMedico extends JFrame {
 
 		JLabel lblNewLabel_9 = new JLabel("Clicca qui per aggiungere una");
 		lblNewLabel_9.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel_9.setBounds(40, 253, 259, 32);
+		lblNewLabel_9.setBounds(40, 259, 259, 32);
 		primoPannello.add(lblNewLabel_9);
 
 		lblNewLabel_10 = new JLabel("tartaruga al DataBase.");
@@ -280,6 +303,9 @@ public class primaFinestraMedico extends JFrame {
 		JButton btnNewButton_3 = new JButton("Statistiche");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				primoPannello.setVisible(false);
+				statPannello.setVisible(true);
+				
 			}
 		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -292,6 +318,8 @@ public class primaFinestraMedico extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				secondoPannello.setVisible(false);
 				primoPannello.setVisible(true);
+				
+				
 			}
 		});
 		btnIndietro2.setBounds(10, 11, 101, 23);

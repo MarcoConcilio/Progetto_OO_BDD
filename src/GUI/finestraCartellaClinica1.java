@@ -117,49 +117,49 @@ public class finestraCartellaClinica1 extends JFrame {
 		Indietro2.setBounds(10, 11, 89, 23);
 		pannelloSecondo.add(Indietro2);
 
-		lblTesta = new JLabel("Testa");
+		lblTesta = new JLabel("Testa:");
 		lblTesta.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTesta.setBounds(53, 156, 46, 14);
+		lblTesta.setBounds(50, 156, 49, 14);
 		pannelloSecondo.add(lblTesta);
 
-		lblOcchi = new JLabel("Occhi");
+		lblOcchi = new JLabel("Occhi:");
 		lblOcchi.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblOcchi.setBounds(53, 201, 46, 14);
+		lblOcchi.setBounds(50, 204, 49, 14);
 		pannelloSecondo.add(lblOcchi);
 
-		lblNaso = new JLabel("Naso");
+		lblNaso = new JLabel("Naso:");
 		lblNaso.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNaso.setBounds(53, 247, 46, 14);
+		lblNaso.setBounds(50, 253, 45, 14);
 		pannelloSecondo.add(lblNaso);
 
-		lblBecco = new JLabel("Becco");
+		lblBecco = new JLabel("Becco:");
 		lblBecco.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBecco.setBounds(53, 294, 46, 14);
+		lblBecco.setBounds(50, 300, 57, 14);
 		pannelloSecondo.add(lblBecco);
 
-		lblCollo = new JLabel("Collo");
+		lblCollo = new JLabel("Collo:");
 		lblCollo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCollo.setBounds(53, 433, 46, 14);
+		lblCollo.setBounds(54, 439, 45, 14);
 		pannelloSecondo.add(lblCollo);
 
-		lblPinne = new JLabel("Pinne");
+		lblPinne = new JLabel("Pinne:");
 		lblPinne.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPinne.setBounds(53, 386, 46, 14);
+		lblPinne.setBounds(50, 392, 49, 14);
 		pannelloSecondo.add(lblPinne);
 
-		lblCoda = new JLabel("Coda");
+		lblCoda = new JLabel("Coda:");
 		lblCoda.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCoda.setBounds(53, 340, 46, 14);
+		lblCoda.setBounds(50, 346, 49, 14);
 		pannelloSecondo.add(lblCoda);
 
 		lblNewLabel_13 = new JLabel("Indicare la condizione delle componenti su una scala da 1 a 10.");
-		lblNewLabel_13.setFont(new Font("Sitka Text", Font.PLAIN, 15));
-		lblNewLabel_13.setBounds(21, 114, 457, 31);
+		lblNewLabel_13.setFont(new Font("Sitka Text", Font.PLAIN, 18));
+		lblNewLabel_13.setBounds(10, 78, 535, 31);
 		pannelloSecondo.add(lblNewLabel_13);
 
 		textNumCart = new JTextField();
 		textNumCart.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textNumCart.setBounds(180, 142, 86, 20);
+		textNumCart.setBounds(180, 136, 86, 26);
 		pannelloPrimo.add(textNumCart);
 		textNumCart.setColumns(10);
 
@@ -183,6 +183,8 @@ public class finestraCartellaClinica1 extends JFrame {
 						textLuogoRitrovamento.getText(), textDataIns.getText());
 
 				vascaDao.updateIDTartarugaVasca(textIdTartaruga.getText());
+
+				// dopo l'inserimento cancella tutto ciò che hai scritto nella cartella clinica
 				textTesta.setText(null);
 				textOcchi.setText(null);
 				textNaso.setText(null);
@@ -209,43 +211,43 @@ public class finestraCartellaClinica1 extends JFrame {
 		textTesta = new JTextField();
 		textTesta.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textTesta.setColumns(10);
-		textTesta.setBounds(107, 156, 161, 20);
+		textTesta.setBounds(107, 148, 161, 28);
 		pannelloSecondo.add(textTesta);
 
 		textOcchi = new JTextField();
 		textOcchi.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textOcchi.setColumns(10);
-		textOcchi.setBounds(107, 201, 161, 20);
+		textOcchi.setBounds(107, 198, 161, 28);
 		pannelloSecondo.add(textOcchi);
 
 		textNaso = new JTextField();
 		textNaso.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textNaso.setColumns(10);
-		textNaso.setBounds(107, 247, 161, 20);
+		textNaso.setBounds(107, 247, 161, 28);
 		pannelloSecondo.add(textNaso);
 
 		textBecco = new JTextField();
 		textBecco.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textBecco.setColumns(10);
-		textBecco.setBounds(107, 294, 161, 20);
+		textBecco.setBounds(107, 294, 161, 28);
 		pannelloSecondo.add(textBecco);
 
 		textCoda = new JTextField();
 		textCoda.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textCoda.setColumns(10);
-		textCoda.setBounds(107, 340, 161, 20);
+		textCoda.setBounds(107, 340, 161, 28);
 		pannelloSecondo.add(textCoda);
 
 		textPinne = new JTextField();
 		textPinne.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textPinne.setColumns(10);
-		textPinne.setBounds(107, 386, 161, 20);
+		textPinne.setBounds(107, 386, 161, 28);
 		pannelloSecondo.add(textPinne);
 
 		textCollo = new JTextField();
 		textCollo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textCollo.setColumns(10);
-		textCollo.setBounds(109, 433, 161, 20);
+		textCollo.setBounds(109, 433, 161, 28);
 		pannelloSecondo.add(textCollo);
 
 		lblNewLabel_1 = new JLabel("New label");
@@ -253,7 +255,7 @@ public class finestraCartellaClinica1 extends JFrame {
 		lblNewLabel_1.setBounds(290, 221, 286, 167);
 		pannelloSecondo.add(lblNewLabel_1);
 
-		JLabel lblIdTartaruga = new JLabel("ID Tartaruga"); // piu avanti bisogna controllare se è gia presente nel
+		JLabel lblIdTartaruga = new JLabel("ID Tartaruga:"); // piu avanti bisogna controllare se è gia presente nel
 															// database
 		lblIdTartaruga.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblIdTartaruga.setBounds(286, 136, 108, 26);
@@ -261,73 +263,73 @@ public class finestraCartellaClinica1 extends JFrame {
 
 		textIdTartaruga = new JTextField();
 		textIdTartaruga.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textIdTartaruga.setBounds(404, 140, 105, 20);
+		textIdTartaruga.setBounds(404, 136, 105, 24);
 		pannelloPrimo.add(textIdTartaruga);
 		textIdTartaruga.setColumns(10);
 
-		lblNome = new JLabel("Nome ");
+		lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNome.setBounds(112, 182, 58, 18);
+		lblNome.setBounds(122, 182, 58, 18);
 		pannelloPrimo.add(lblNome);
 
 		textNome = new JTextField();
 		textNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textNome.setBounds(180, 182, 86, 20);
+		textNome.setBounds(180, 178, 86, 24);
 		pannelloPrimo.add(textNome);
 		textNome.setColumns(10);
 
-		lblSpecie = new JLabel("Specie");
+		lblSpecie = new JLabel("Specie:");
 		lblSpecie.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSpecie.setBounds(380, 282, 57, 26);
+		lblSpecie.setBounds(337, 261, 57, 26);
 		pannelloPrimo.add(lblSpecie);
 
-		lblLunghezza = new JLabel("Lunghezza");
+		lblLunghezza = new JLabel("Lunghezza:");
 		lblLunghezza.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblLunghezza.setBounds(308, 215, 86, 35);
+		lblLunghezza.setBounds(305, 215, 89, 35);
 		pannelloPrimo.add(lblLunghezza);
 
-		lblLarghezza = new JLabel("Larghezza");
+		lblLarghezza = new JLabel("Larghezza:");
 		lblLarghezza.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblLarghezza.setBounds(308, 173, 86, 26);
 		pannelloPrimo.add(lblLarghezza);
 
-		lblPeso = new JLabel("Peso");
+		lblPeso = new JLabel("Peso:");
 		lblPeso.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPeso.setBounds(123, 222, 47, 20);
+		lblPeso.setBounds(133, 222, 47, 20);
 		pannelloPrimo.add(lblPeso);
 
-		lblLuogoRitrovamento = new JLabel("Luogo di ritrovamento");
+		lblLuogoRitrovamento = new JLabel("Luogo di ritrovamento:");
 		lblLuogoRitrovamento.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblLuogoRitrovamento.setBounds(84, 277, 175, 36);
+		lblLuogoRitrovamento.setBounds(22, 280, 187, 36);
 		pannelloPrimo.add(lblLuogoRitrovamento);
 
 		textPeso = new JTextField();
 		textPeso.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textPeso.setBounds(180, 223, 86, 20);
+		textPeso.setBounds(180, 217, 86, 26);
 		pannelloPrimo.add(textPeso);
 		textPeso.setColumns(10);
 
 		textLarghezza = new JTextField();
 		textLarghezza.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textLarghezza.setBounds(404, 182, 105, 20);
+		textLarghezza.setBounds(404, 176, 105, 26);
 		pannelloPrimo.add(textLarghezza);
 		textLarghezza.setColumns(10);
 
 		textLunghezza = new JTextField();
 		textLunghezza.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textLunghezza.setBounds(404, 223, 105, 20);
+		textLunghezza.setBounds(404, 217, 105, 26);
 		pannelloPrimo.add(textLunghezza);
 		textLunghezza.setColumns(10);
 
 		textLuogoRitrovamento = new JTextField();
 		textLuogoRitrovamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textLuogoRitrovamento.setBounds(84, 324, 175, 20);
+		textLuogoRitrovamento.setBounds(22, 318, 187, 26);
 		pannelloPrimo.add(textLuogoRitrovamento);
 		textLuogoRitrovamento.setColumns(10);
 
 		textSpecie = new JTextField();
 		textSpecie.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textSpecie.setBounds(357, 324, 105, 20);
+		textSpecie.setBounds(404, 259, 105, 26);
 		pannelloPrimo.add(textSpecie);
 		textSpecie.setColumns(10);
 
@@ -381,21 +383,21 @@ public class finestraCartellaClinica1 extends JFrame {
 		lblNewLabel_8.setBounds(0, 386, 241, 167);
 		pannelloPrimo.add(lblNewLabel_8);
 
-		lblNumeroCartella = new JLabel("Numero Cartella");
+		lblNumeroCartella = new JLabel("Numero Cartella:");
 		lblNumeroCartella.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNumeroCartella.setBounds(34, 138, 136, 23);
+		lblNumeroCartella.setBounds(44, 137, 136, 23);
 		pannelloPrimo.add(lblNumeroCartella);
 
 		textDataIns = new JTextField();
-		textDataIns.setBounds(376, 368, 86, 20);
+		textDataIns.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textDataIns.setBounds(404, 304, 105, 26);
 		pannelloPrimo.add(textDataIns);
 		textDataIns.setColumns(10);
 
-//		textNumCart = new JTextField();
-//		textNumCart.setFont(new Font("Tahoma", Font.PLAIN, 16));
-//		textNumCart.setBounds(180, 142, 86, 20);
-//		pannelloPrimo.add(textNumCart);
-//		textNumCart.setColumns(10);
+		JLabel lblNewLabel_2 = new JLabel("Data Accesso:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_2.setBounds(284, 313, 110, 14);
+		pannelloPrimo.add(lblNewLabel_2);
 
 	}
 }

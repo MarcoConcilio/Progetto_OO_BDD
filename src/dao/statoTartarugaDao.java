@@ -30,7 +30,7 @@ public class statoTartarugaDao {
 			prepStatementQuery.setString(7, coda);
 			prepStatementQuery.setString(8, idStato);
 
-			prepStatementQuery.executeQuery();
+			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

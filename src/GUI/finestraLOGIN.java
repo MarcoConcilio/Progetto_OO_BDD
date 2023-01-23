@@ -38,7 +38,6 @@ public class finestraLOGIN extends JFrame {
 		primaFinestraMedico finestra2 = new primaFinestraMedico(this);
 		finestraAltriLavoratori finestraAltri = new finestraAltriLavoratori(this);
 
-//		personaleDao dao = new personaleDao();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 300, 499, 449);
 		pannelloBase = new JPanel();
@@ -63,25 +62,25 @@ public class finestraLOGIN extends JFrame {
 		accedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-//				personaleDao dao = new personaleDao();
-//
-//				stringa = textUsername.getText();
-//				if (dao.logIn(textUsername.getText())) {
-//					if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
+				personaleDao dao = new personaleDao();
+
+				stringa = textUsername.getText();
+				if (dao.logIn(textUsername.getText())) {
+					if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
 						setVisible(false);
 						finestra2.setVisible(true);
-//					} // da aggiungere una pagina admin che permette di aggiungere lavoratori al
-//						// database
-//
-//					else { // altrimenti ti porta nella pagina degli altri lavoratori
-//						setVisible(false);
-//						finestraAltri.setVisible(true);
-//					}
-//				}
-//
-//				else {
-//					JOptionPane.showMessageDialog(null, "Credenziali errate.");
-//				}
+					} // da aggiungere una pagina admin che permette di aggiungere lavoratori al
+						// database
+
+					else { // altrimenti ti porta nella pagina degli altri lavoratori
+						setVisible(false);
+						finestraAltri.setVisible(true);
+					}
+				}
+
+				else {
+					JOptionPane.showMessageDialog(null, "Credenziali errate.");
+				}
 
 			}
 

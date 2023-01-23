@@ -34,7 +34,7 @@ public class cartellaClinicaDao {
 
 			
 			
-			prepStatementQuery.executeQuery();
+			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

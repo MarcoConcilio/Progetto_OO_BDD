@@ -16,14 +16,14 @@ public class tartarugaDao {
 
 		try {
 
-			String query = "INSERT INTO tartaruga (id_tartaruga, nome, primoaccesso) VALUES (?,?,true)";
+			String query = "INSERT INTO tartaruga (id_tartaruga, nome, targhetta) VALUES (?,?,true)";
 
 			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
 
 			prepStatementQuery.setString(1, idTart);
 			prepStatementQuery.setString(2, nome);
 
-			prepStatementQuery.executeQuery();
+			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
