@@ -75,15 +75,9 @@ public class finestraCartellaClinica1 extends JFrame {
 	private String stringa;
 	private JTextField textDataIns;
 
-	/**
-	 * Create the frame.
-	 */
 	public finestraCartellaClinica1(finestraRiammPrimoacc p1) {
 		finestra1 = p1;
-
-//		tartarugaDao tartarugaDao = new tartarugaDao();
-//		controller controller = new controller();
-//		vascaDao vascaDao = new vascaDao();
+		controller controller = new controller();
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -110,8 +104,7 @@ public class finestraCartellaClinica1 extends JFrame {
 		Indietro2 = new JButton("Indietro");
 		Indietro2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pannelloSecondo.setVisible(false);
-				pannelloPrimo.setVisible(true);
+				controller.tastoIndietro(pannelloSecondo, pannelloPrimo);
 			}
 		});
 		Indietro2.setBounds(10, 11, 89, 23);
@@ -167,41 +160,9 @@ public class finestraCartellaClinica1 extends JFrame {
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				tartarugaDao tartarugaDao = new tartarugaDao();
-				controller controller = new controller();
-				vascaDao vascaDao = new vascaDao();
-
-				stringa = textNumCart.getText();
-				tartarugaDao.insertTarta(textIdTartaruga.getText(), textNome.getText());
-				controller.invioDBSTATO(textTesta.getText(), textOcchi.getText(), textNaso.getText(),
-						textBecco.getText(), textCollo.getText(), textPinne.getText(), textCoda.getText(), stringa);
-				
-
-				controller.controlloCC(textNumCart.getText(), textIdTartaruga.getText(), textNome.getText(),
-						textLunghezza.getText(), textLarghezza.getText(), textPeso.getText(), textSpecie.getText(),
-						textLuogoRitrovamento.getText(), textDataIns.getText(), tartarugaDao.selectUltimoIDTartaruga(), textIdTartaruga.getText());
-
-				//vascaDao.updateIDTartarugaVasca(textIdTartaruga.getText());
-
-				// dopo l'inserimento cancella tutto ciò che hai scritto nella cartella clinica
-				textTesta.setText(null);
-				textOcchi.setText(null);
-				textNaso.setText(null);
-				textBecco.setText(null);
-				textCollo.setText(null);
-				textPinne.setText(null);
-				textCoda.setText(null);
-				textIdTartaruga.setText(null);
-				textNome.setText(null);
-				textNumCart.setText(null);
-				textLunghezza.setText(null);
-				textLarghezza.setText(null);
-				textPeso.setText(null);
-				textSpecie.setText(null);
-				textLuogoRitrovamento.setText(null);
-				pannelloSecondo.setVisible(false);
-				pannelloPrimo.setVisible(true);
+				controller.inviaCC(controller, stringa, textNumCart, textIdTartaruga, textNome, textTesta, textOcchi,
+						textNaso, textBecco, textCollo, textPinne, textCoda, textLunghezza, textLarghezza, textPeso,
+						textSpecie, textLuogoRitrovamento, textDataIns, pannelloSecondo, pannelloPrimo);
 			}
 		});
 		lblNewLabel.setForeground(new Color(0, 64, 128));
@@ -255,14 +216,14 @@ public class finestraCartellaClinica1 extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon("images\\CatturaMINECRAFT (1).png"));
 		lblNewLabel_1.setBounds(290, 221, 286, 167);
 		pannelloSecondo.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_13_1 = new JLabel("la condizione delle varie parti.");
 		lblNewLabel_13_1.setFont(new Font("Sitka Text", Font.PLAIN, 18));
 		lblNewLabel_13_1.setBounds(146, 79, 265, 31);
 		pannelloSecondo.add(lblNewLabel_13_1);
 
-		JLabel lblIdTartaruga = new JLabel("ID Targhetta:"); // piu avanti bisogna controllare se è gia presente nel
-															// database
+		JLabel lblIdTartaruga = new JLabel("ID Targhetta:");
+
 		lblIdTartaruga.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblIdTartaruga.setBounds(286, 136, 108, 26);
 		pannelloPrimo.add(lblIdTartaruga);
@@ -272,7 +233,7 @@ public class finestraCartellaClinica1 extends JFrame {
 		textIdTartaruga.setBounds(404, 136, 105, 24);
 		pannelloPrimo.add(textIdTartaruga);
 		textIdTartaruga.setColumns(10);
-		
+
 		lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNome.setBounds(122, 182, 58, 18);
@@ -343,16 +304,8 @@ public class finestraCartellaClinica1 extends JFrame {
 		btnSuccessivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (textIdTartaruga.getText().equals("") || textNome.getText().equals("")
-						|| textSpecie.getText().equals("") || textNumCart.getText().equals("")
-						|| textPeso.getText().equals("") || textLarghezza.getText().equals("")
-						|| textLuogoRitrovamento.getText().equals("") || textLunghezza.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Devi inserire tutti i parametri.");
-				} else {
-
-					pannelloPrimo.setVisible(false);
-					pannelloSecondo.setVisible(true);
-				}
+				controller.controlloStringaVuota(textIdTartaruga, textNome, textSpecie, textNumCart, textPeso,
+						textLarghezza, textLuogoRitrovamento, textLunghezza, pannelloPrimo, pannelloSecondo);
 			}
 		});
 		btnSuccessivo.setFont(new Font("Tahoma", Font.PLAIN, 16));

@@ -39,14 +39,15 @@ public class finestraRiammPrimoacc extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-	
+
 	/**
 	 * Create the frame.
 	 */
-	public finestraRiammPrimoacc(primaFinestraMedico f1) {
-		finestraMezzo = f1;
+	public finestraRiammPrimoacc() {
+
 		finestraCartellaClinica1 cartmedica1 = new finestraCartellaClinica1(this);
 		finestraCartellaClinicaRiammissione cartellaRiammissione = new finestraCartellaClinicaRiammissione(this);
+		controller controller = new controller();
 
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(600, 300, 526, 390);
@@ -72,94 +73,93 @@ public class finestraRiammPrimoacc extends JFrame {
 		JButton btnNewButton_2 = new JButton("Indietro");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pannelloSecondo.setVisible(false);
-				pannelloPrimo.setVisible(true);
+				controller.tastoIndietro(pannelloSecondo, pannelloPrimo);
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.setBounds(10, 11, 89, 23);
 		pannelloSecondo.add(btnNewButton_2);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Testa:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_2.setBounds(50, 77, 49, 26);
 		pannelloSecondo.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Occhi:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_3.setBounds(50, 122, 49, 26);
 		pannelloSecondo.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("Naso:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_4.setBounds(53, 162, 46, 23);
 		pannelloSecondo.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("Becco:");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_5.setBounds(270, 128, 52, 14);
 		pannelloSecondo.add(lblNewLabel_5);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("Coda:");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_6.setBounds(276, 83, 46, 14);
 		pannelloSecondo.add(lblNewLabel_6);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("Pinne:");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_7.setBounds(50, 207, 49, 23);
 		pannelloSecondo.add(lblNewLabel_7);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("Collo:");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_8.setBounds(276, 171, 46, 14);
 		pannelloSecondo.add(lblNewLabel_8);
-		
+
 		textField = new JTextField();
 		textField.setBounds(100, 80, 115, 26);
 		pannelloSecondo.add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblNewLabel_9 = new JLabel("Aggiungere una descrizione:");
 		lblNewLabel_9.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
 		lblNewLabel_9.setBounds(124, 21, 252, 32);
 		pannelloSecondo.add(lblNewLabel_9);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(102, 122, 115, 26);
 		pannelloSecondo.add(textField_1);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(102, 162, 115, 26);
 		pannelloSecondo.add(textField_2);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(102, 208, 115, 26);
 		pannelloSecondo.add(textField_3);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(326, 77, 115, 26);
 		pannelloSecondo.add(textField_4);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		textField_5.setBounds(326, 125, 115, 26);
 		pannelloSecondo.add(textField_5);
-		
+
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(326, 166, 115, 26);
 		pannelloSecondo.add(textField_6);
-		
+
 		JButton btnNewButton_3 = new JButton("Invia");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton_3.setBounds(326, 242, 115, 23);
 		pannelloSecondo.add(btnNewButton_3);
-		
+
 		inserimentoVasca = new JTextField();
 		inserimentoVasca.setBounds(303, 213, 167, 20);
 		pannelloPrimo.add(inserimentoVasca);
@@ -194,19 +194,12 @@ public class finestraRiammPrimoacc extends JFrame {
 		SCRITTURA5.setBounds(303, 177, 85, 31);
 		pannelloPrimo.add(SCRITTURA5);
 		SCRITTURA5.setVisible(false);
-		
+
 		JLabel successivo = new JLabel("Successivo");
 		successivo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				vascaDao vascaDao = new vascaDao();
-
-				vascaDao.insertNumeroVasca(inserimentoVasca.getText(), inserimentoVasca.getText());
-				setVisible(false);
-				cartmedica1.setVisible(true);
-
-				inserimentoVasca.setText(null);
+				controller.insertNumVasca(cartmedica1, inserimentoVasca);
 			}
 		});
 		successivo.setForeground(new Color(0, 64, 128));
@@ -224,16 +217,7 @@ public class finestraRiammPrimoacc extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				tartarugaDao tartarugaDao = new tartarugaDao();
-
-				if (tartarugaDao.selectTartaruga(textFieldRicerca.getText())) {
-					stringa = textFieldRicerca.getText();
-					setVisible(false);
-					cartellaRiammissione.setVisible(true);
-				} else {
-					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
-				}
+				controller.inserisciTarghetta(cartellaRiammissione, textFieldRicerca, stringa);
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon("images\\Cattura (1).png"));
@@ -252,18 +236,8 @@ public class finestraRiammPrimoacc extends JFrame {
 		btnPrimoAccesso.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnPrimoAccesso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				textFieldRicerca.setVisible(false);
-				lblSCRITTURA.setVisible(false);
-				lblSCRITTURA2.setVisible(false);
-				btnNewButton_1.setVisible(false);
-
-				SCRITTURA3.setVisible(true);
-				SCRITTURA4.setVisible(true);
-				SCRITTURA5.setVisible(true);
-				successivo.setVisible(true);
-				inserimentoVasca.setVisible(true);
-
+				controller.textFieldFalseTrue(SCRITTURA3, SCRITTURA4, SCRITTURA5, successivo, lblSCRITTURA,
+						btnNewButton_1, lblSCRITTURA2, textFieldRicerca, inserimentoVasca);
 			}
 		});
 		btnPrimoAccesso.setBounds(303, 102, 167, 23);
@@ -284,29 +258,19 @@ public class finestraRiammPrimoacc extends JFrame {
 		pannelloPrimo.add(textFieldRicerca);
 		textFieldRicerca.setColumns(10);
 		textFieldRicerca.setVisible(false);
-		
+
 		stringa = textFieldRicerca.getText();
 
 		JButton btnNewButton = new JButton("Riammessa");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SCRITTURA3.setVisible(false);
-				SCRITTURA4.setVisible(false);
-				SCRITTURA5.setVisible(false);
-				successivo.setVisible(false);
-				inserimentoVasca.setVisible(false);
-
-				textFieldRicerca.setVisible(true);
-				lblSCRITTURA.setVisible(true);
-				lblSCRITTURA2.setVisible(true);
-				btnNewButton_1.setVisible(true);
+				controller.textFieldFalseTrue2(SCRITTURA3, SCRITTURA4, SCRITTURA5, successivo, lblSCRITTURA,
+						btnNewButton_1, lblSCRITTURA2, inserimentoVasca, textFieldRicerca);
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(43, 102, 140, 23);
 		pannelloPrimo.add(btnNewButton);
-
-
 
 	}
 }

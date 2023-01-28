@@ -89,6 +89,7 @@ public class finestraAltriLavoratori extends JFrame {
 	private JLabel lblNewLabel_26;
 	private JScrollPane scrollPane_1;
 	private JTable table_1;
+	private JLabel lblNewLabel_27;
 
 	public finestraAltriLavoratori(finestraLOGIN m1) {
 		finestraMain = m1;
@@ -140,8 +141,7 @@ public class finestraAltriLavoratori extends JFrame {
 		JButton btnIndietro2_1 = new JButton("Indietro");
 		btnIndietro2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				statPannello.setVisible(false);
-				primoPannello.setVisible(true);
+				controller.tastoIndietro(statPannello, primoPannello);
 			}
 		});
 		btnIndietro2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -184,7 +184,7 @@ public class finestraAltriLavoratori extends JFrame {
 
 				if (comboBox.getSelectedIndex() == 0) {
 
-					table.setModel(cartellaClinicaDao.statisticheAnnuali());
+					//table.setModel(cartellaClinicaDao.statisticheAnnuali());
 				} else {
 					table.setModel(cartellaClinicaDao.statisticheMensili());
 				}
@@ -203,8 +203,7 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_5 = new JButton("Indietro");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				aggPannello.setVisible(false);
-				primoPannello.setVisible(true);
+				controller.tastoIndietro(aggPannello, primoPannello);
 			}
 		});
 		btnNewButton_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -236,13 +235,8 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				controller.invioTartar(inserimentoVasca.getText(), textNome.getText(), textId.getText());
-				aggPannello.setVisible(false);
-				primoPannello.setVisible(true);
-				inserimentoVasca.setText(null);
-				textNome.setText(null);
-				textId.setText(null);
+				controller.inviaAltriLavoratori(controller, inserimentoVasca, textNome, textId, aggPannello,
+						primoPannello);
 			}
 		});
 		btnNewButton_6.setBounds(248, 371, 99, 23);
@@ -284,45 +278,11 @@ public class finestraAltriLavoratori extends JFrame {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tartarugaDao tartarugaDao = new tartarugaDao();
-				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
-
-//				table_1.setModel(tartarugaDao.sceltaTartaruga());
-				
-				if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
-//					textFieldVisual.setVisible(true);
-
-					textFieldVisual.setText((tartarugaDao.selectTartarugaStringa(textVisualizzaTarta.getText())));
-					primoPannello.setVisible(false);
-					secondoPannello.setVisible(true);
-					dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
-					dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
-					dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
-					dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
-					dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
-					dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
-					dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
-					dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
-					
-
-//					primoPannello.setVisible(false);
-//					secondoPannello.setVisible(true);
-//					dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
-//					dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
-//					dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
-//					dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
-//					dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
-//					dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
-//					dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
-//					dispLuogoRitrova
-//							.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
-
-					textVisualizzaTarta.setText(null);
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
-				}
+				controller.displayTurtlesCC(textVisualizzaTarta, textFieldVisual, primoPannello, secondoPannello,
+						dispNomeTart, dispIdTart, dispIdCartClinica, dispPeso, dispLarghezza, dispLunghezza, dispSpecie,
+						dispLuogoRitrova);
 			}
+
 		});
 		btnNewButton.setIcon(new ImageIcon("images\\Cattura (1).png"));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -333,18 +293,8 @@ public class finestraAltriLavoratori extends JFrame {
 		textFieldVisual.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tartarugaDao tartarugaDao = new tartarugaDao();
-				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
-
-				dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
-				dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
-				dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
-				dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
-				dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
-				dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
-				dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
-				dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
-
+				controller.displayTurtlesCC(dispNomeTart, dispIdTart, dispIdCartClinica, dispPeso, dispLarghezza,
+						dispLunghezza, dispSpecie, dispLuogoRitrova, textFieldVisual);
 			}
 		});
 		textFieldVisual.setBounds(650, 0, 28, 32);
@@ -451,8 +401,7 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_1 = new JButton("Indietro");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				secondoPannello.setVisible(false);
-				primoPannello.setVisible(true);
+				controller.tastoIndietro(secondoPannello, primoPannello);
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -462,18 +411,8 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_2 = new JButton("Successivo");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				secondoPannello.setVisible(false);
-				terzoPannello.setVisible(true);
-
-				statoTartarugaDao statoTartarugaDao = new statoTartarugaDao();
-
-				dispTesta.setText(statoTartarugaDao.displayTestaTartaruga(textFieldVisual.getText()));
-				dispOcchi.setText(statoTartarugaDao.displayOcchiTartaruga(textFieldVisual.getText()));
-				dispNaso.setText(statoTartarugaDao.displayNasoTartaruga(textFieldVisual.getText()));
-				dispBecco.setText(statoTartarugaDao.displayBeccoTartaruga(textFieldVisual.getText()));
-				dispCoda.setText(statoTartarugaDao.displayCodaTartaruga(textFieldVisual.getText()));
-				dispPinne.setText(statoTartarugaDao.displayPinneTartaruga(textFieldVisual.getText()));
-				dispCollo.setText(statoTartarugaDao.displayColloTartaruga(textFieldVisual.getText()));
+				controller.displayTurtlesSTATO(secondoPannello, terzoPannello, dispTesta, dispOcchi, dispNaso,
+						dispBecco, dispCoda, dispPinne, dispCollo, textFieldVisual);
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -568,8 +507,7 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_3 = new JButton("Indietro");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				terzoPannello.setVisible(false);
-				secondoPannello.setVisible(true);
+				controller.tastoIndietro(terzoPannello, secondoPannello);
 			}
 		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -591,8 +529,7 @@ public class finestraAltriLavoratori extends JFrame {
 		buttonCartClin = new JButton("Aggiungi tartaruga");
 		buttonCartClin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				primoPannello.setVisible(false);
-				aggPannello.setVisible(true);
+				controller.tastoIndietro(primoPannello, aggPannello);
 			}
 		});
 		buttonCartClin.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -608,11 +545,8 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
-
 				textEntrate.setText(cartellaClinicaDao.selectStatistiche());
-
-				primoPannello.setVisible(false);
-				statPannello.setVisible(true);
+				controller.tastoIndietro(primoPannello, statPannello);
 			}
 		});
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -628,16 +562,27 @@ public class finestraAltriLavoratori extends JFrame {
 		lblNewLabel_25.setIcon(new ImageIcon("images\\WorkerIcon (2) (1) (1).png"));
 		lblNewLabel_25.setBounds(33, 32, 50, 62);
 		primoPannello.add(lblNewLabel_25);
-		
+
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(170, 142, 291, 105);
 		primoPannello.add(scrollPane_1);
-		
+
 		table_1 = new JTable();
 		scrollPane_1.setViewportView(table_1);
-		
+
 		tartarugaDao tartarugaDao = new tartarugaDao();
 		table_1.setModel(tartarugaDao.sceltaTartaruga());
+
+		lblNewLabel_27 = new JLabel("New label");
+		lblNewLabel_27.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				table_1.setModel(tartarugaDao.sceltaTartaruga());
+			}
+		});
+		lblNewLabel_27.setIcon(new ImageIcon("images\\Ref (1) (1).png"));
+		lblNewLabel_27.setBounds(139, 142, 21, 32);
+		primoPannello.add(lblNewLabel_27);
 
 	}
 }

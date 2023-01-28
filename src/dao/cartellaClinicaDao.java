@@ -208,18 +208,45 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	public DefaultTableModel statisticheAnnuali() {
+//	public DefaultTableModel statisticheAnnuali() {
+//		DefaultTableModel modello = new DefaultTableModel();
+//		modello.addColumn("Nome");
+//		modello.addColumn("Targhetta");
+//		modello.addColumn("Data Ingresso");
+//		modello.addColumn("Anno");
+//		try {
+//			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( YEAR FROM c.data_ingresso) from cartella_clinica as c order by c.data_ingresso";
+//
+//			Statement statementQueryLogin = connessione.getConnection().createStatement();
+//			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
+//
+//			while (rsLogin.next()) {
+//
+//				modello.addRow(new Object[] { rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3),
+//						rsLogin.getString(4) });
+//			}
+//
+//			connessione.getConnection().close();
+//		} catch (SQLException e) {
+//			e.getStackTrace();
+//		}
+//		return modello;
+//	}
+
+	public DefaultTableModel statisticheAnnuali2(String dataIns) {
 		DefaultTableModel modello = new DefaultTableModel();
 		modello.addColumn("Nome");
 		modello.addColumn("Targhetta");
 		modello.addColumn("Data Ingresso");
 		modello.addColumn("Anno");
+		
 		try {
-			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( YEAR FROM c.data_ingresso) from cartella_clinica as c order by c.data_ingresso";
+		
+			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( YEAR FROM c.data_ingresso) from cartella_clinica as c join statistiche as s on (c.costante = s.costante) where c.data_ingresso between '"+dataIns+"-01-01' AND '"+dataIns+"-12-31' order by c.data_ingresso";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
-
+			
 			while (rsLogin.next()) {
 
 				modello.addRow(new Object[] { rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3),
@@ -232,7 +259,7 @@ public class cartellaClinicaDao {
 		}
 		return modello;
 	}
-
+	
 	public DefaultTableModel statisticheMensili() {
 		DefaultTableModel modello = new DefaultTableModel();
 		modello.addColumn("Nome");
@@ -257,5 +284,31 @@ public class cartellaClinicaDao {
 		}
 		return modello;
 	}
+	
+	public DefaultTableModel statisticheMensili2(String mese) {
+		DefaultTableModel modello = new DefaultTableModel();
+		modello.addColumn("Nome");
+		modello.addColumn("Targhetta");
+		modello.addColumn("Data Ingresso");
+		modello.addColumn("Mese");
+		try {
+			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( MONTH FROM c.data_ingresso) from cartella_clinica as c join statistiche as s on (c.costante = s.costante) where c.data_ingresso between '2020-"+mese+"-01 AND 2030-"+mese+"-31' order by c.data_ingresso";
+
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
+
+			while (rsLogin.next()) {
+
+				modello.addRow(new Object[] { rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3),
+						rsLogin.getString(4) });
+			}
+
+			connessione.getConnection().close();
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return modello;
+	}
+
 
 }
