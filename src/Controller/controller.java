@@ -17,16 +17,14 @@ public class controller {
 	statoTartarugaDao stato_tartarugaDao = new statoTartarugaDao();
 	vascaDao vascaDao = new vascaDao();
 	tartarugaDao tartarugaDao = new tartarugaDao();
-	
-	// Metodo per controllare se la cartella clinica è vuota 
-	// ---------------------------------------------------------------------------------------------
+
 	public void invioDB(String numCartella, String idTart, String nome, String lunghezza, String larghezza, String peso,
 			String specie, String luogoRitr, Date dataIns, int idAutoincrement, String Targhetta) {
 
 		if (idTart.isEmpty() || numCartella.isEmpty() || nome.isEmpty() || specie.isEmpty() || lunghezza.isEmpty()
 				|| larghezza.isEmpty() || peso.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Devi inserire i parametri obbligatori.");
-		} else { // serve creare prima le tartarughe
+		} else {
 
 			cartellaClinicaDao.insertCartClin(numCartella, idTart, nome, lunghezza, larghezza, peso, specie, luogoRitr,
 					dataIns, idAutoincrement, Targhetta);
@@ -34,8 +32,6 @@ public class controller {
 
 	}
 
-	// Metodo per controllare se lo stato tartaruga è vuto
-	// ---------------------------------------------------------------------------------------------
 	public void invioDBSTATO(String testa, String occhi, String naso, String becco, String collo, String pinne,
 			String coda, String idStato) {
 
@@ -47,8 +43,6 @@ public class controller {
 		}
 	}
 
-	// metodo per inviare le cose a CARTELLA CLINICA
-	// ---------------------------------------------------------------------------------------------
 	public void controlloCC(String numCartella, String idTart, String nome, String lunghezza, String larghezza,
 			String peso, String specie, String luogoRitr, String dataIns, int idAutoincrement, String Targhetta) {
 
@@ -58,20 +52,19 @@ public class controller {
 			date = sdf1.parse(dataIns);
 			java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
 
-			invioDB(numCartella, idTart, nome, lunghezza, larghezza, peso, specie, luogoRitr, sqlStartDate, idAutoincrement, Targhetta);
+			invioDB(numCartella, idTart, nome, lunghezza, larghezza, peso, specie, luogoRitr, sqlStartDate,
+					idAutoincrement, Targhetta);
 
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 	}
-	
+
 	public void invioTartar(String vasca, String nome, String id) {
-		if(vasca.isEmpty() && nome.isEmpty() && id.isEmpty()) {
+		if (vasca.isEmpty() && nome.isEmpty() && id.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Inserisci i parametri.");
-		}
-		else {
+		} else {
 			vascaDao.insertNumeroVasca(vasca, vasca);
 			tartarugaDao.insertTarta(nome, id);
 		}

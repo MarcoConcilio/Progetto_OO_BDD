@@ -13,8 +13,6 @@ import CollegamentoDataBase.collegamentoDB;
 public class cartellaClinicaDao {
 	collegamentoDB connessione = new collegamentoDB();
 
-	// Sistema di inserimento dentro la cartella clinica
-	// ---------------------------------------------------------------------------------------------
 	public void insertCartClin(String numCartella, String idTart, String nome, String lunghezza, String larghezza,
 			String peso, String specie, String luogoRitr, Date dataIngr, int idIncrement, String Targhetta) {
 
@@ -42,10 +40,6 @@ public class cartellaClinicaDao {
 		}
 	}
 
-	// Metodo per displayare il numero cartella della tartaruga associata e la vasca
-	// alla
-	// tartaruga
-	// ---------------------------------------------------------------------------------------------
 	public String displayNumeroCartellaTartaruga(String idTart) {
 		String risultato = new String();
 
@@ -69,9 +63,6 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	// Metodo per displayare il peso della tartaruga associata e la vasca alla
-	// tartaruga
-	// ---------------------------------------------------------------------------------------------
 	public String displayPesoDellaTartaruga(String idTart) {
 		String risultato = new String();
 
@@ -94,19 +85,14 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	// Metodo per displayare il Larghezza della tartaruga associata e la vasca alla
-	// tartaruga
-	// ---------------------------------------------------------------------------------------------
 	public String displayLarghezzaDellaTartaruga(String idTart) {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT larghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
-																												// una
-			// queri in
-			// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			String queryLogin = "SELECT larghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
+
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 
 			if (rsLogin.next()) {
 
@@ -120,20 +106,14 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	// Metodo per displayare il Larghezza della tartaruga associata e la vasca alla
-	// tartaruga
-	// ---------------------------------------------------------------------------------------------
 	public String displayLunghezzaDellaTartaruga(String idTart) {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT lunghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
-																												// una
-			// queri in
-			// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			String queryLogin = "SELECT lunghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
 
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 			if (rsLogin.next()) {
 
 				risultato = rsLogin.getString("lunghezza");
@@ -146,19 +126,14 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	// Metodo per displayare la specie della tartaruga associata e la vasca alla
-	// tartaruga
-	// ---------------------------------------------------------------------------------------------
 	public String displaySpecieDellaTartaruga(String idTart) {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT specie FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
-																											// una
-			// queri in
-			// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			String queryLogin = "SELECT specie FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
+
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 
 			if (rsLogin.next()) {
 
@@ -172,20 +147,14 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	// Metodo per displayare il luogo di ritrovamento della tartaruga associata e la
-	// vasca alla
-	// tartaruga
-	// ---------------------------------------------------------------------------------------------
 	public String displayLuogoRitrovamentoDellaTartaruga(String idTart) {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT luogo_ritrovamento FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
-			// una
-			// queri in
-			// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			String queryLogin = "SELECT luogo_ritrovamento FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
+
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 
 			if (rsLogin.next()) {
 
@@ -199,8 +168,6 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	// update di targhetta dentro cartella_clinica dopo la riammissione
-	// ---------------------------------------------------------------------------------------------
 	public void updateIDTartarugaCartClin(String idTart, String idTart2, String idVecchio) {
 
 		try {
@@ -220,38 +187,14 @@ public class cartellaClinicaDao {
 		}
 	}
 
-	// Seleziona le tartarughe entrate tra due anni inseriti dall'utente
-	// ---------------------------------------------------------------------------------------------
-//	public String selectStatistiche(String dataInizio, String dataFine) {
-//		String risultato = new String();
-//
-//		try {
-//			String queryLogin = "select count(cc.data_ingresso) from cartella_clinica as cc join statistiche as s on (cc.costante = s.costante) where cc.data_ingresso between '"
-//					+ dataInizio + "' AND '" + dataFine + "'";
-//
-//			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-//			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
-//
-//			if (rsLogin.next()) {
-//
-//				risultato = rsLogin.getString(1);
-//			}
-//
-//			connessione.getConnection().close();
-//		} catch (SQLException e) {
-//			e.getStackTrace();
-//		}
-//		return risultato;
-//	}
-
 	public String selectStatistiche() {
 		String risultato = new String();
 
 		try {
 			String queryLogin = "select count(cc.data_ingresso) from cartella_clinica as cc join statistiche as s on (cc.costante = s.costante) where cc.data_ingresso between s.data_inizio AND s.data_fine";
 
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 
 			if (rsLogin.next()) {
 
@@ -274,12 +217,13 @@ public class cartellaClinicaDao {
 		try {
 			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( YEAR FROM c.data_ingresso) from cartella_clinica as c order by c.data_ingresso";
 
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
-			
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
+
 			while (rsLogin.next()) {
 
-				modello.addRow(new Object[] {rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3), rsLogin.getString(4)}); 								
+				modello.addRow(new Object[] { rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3),
+						rsLogin.getString(4) });
 			}
 
 			connessione.getConnection().close();
@@ -298,12 +242,13 @@ public class cartellaClinicaDao {
 		try {
 			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( MONTH FROM c.data_ingresso) from cartella_clinica as c order by c.data_ingresso";
 
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
-			
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
+
 			while (rsLogin.next()) {
 
-				modello.addRow(new Object[] {rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3), rsLogin.getString(4)}); 								
+				modello.addRow(new Object[] { rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3),
+						rsLogin.getString(4) });
 			}
 
 			connessione.getConnection().close();

@@ -86,6 +86,9 @@ public class finestraAltriLavoratori extends JFrame {
 	private JLabel lblNewLabel_25;
 	private JTextField textEntrate;
 	private JTable table;
+	private JLabel lblNewLabel_26;
+	private JScrollPane scrollPane_1;
+	private JTable table_1;
 
 	public finestraAltriLavoratori(finestraLOGIN m1) {
 		finestraMain = m1;
@@ -125,7 +128,6 @@ public class finestraAltriLavoratori extends JFrame {
 		statPannello.setBackground(new Color(165, 206, 218));
 		statPannello.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		
 		backGroundPanel.add(primoPannello);
 		backGroundPanel.add(terzoPannello);
 		backGroundPanel.add(secondoPannello);
@@ -192,6 +194,11 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton_4_1.setBounds(515, 176, 28, 32);
 		statPannello.add(btnNewButton_4_1);
+
+		lblNewLabel_26 = new JLabel("New label");
+		lblNewLabel_26.setIcon(new ImageIcon("images\\Squirtle (1).png"));
+		lblNewLabel_26.setBounds(455, 37, 88, 91);
+		statPannello.add(lblNewLabel_26);
 
 		btnNewButton_5 = new JButton("Indietro");
 		btnNewButton_5.addActionListener(new ActionListener() {
@@ -263,9 +270,9 @@ public class finestraAltriLavoratori extends JFrame {
 		textId.setBounds(207, 310, 140, 32);
 		aggPannello.add(textId);
 
-		JLabel lblNewLabel = new JLabel("Inserisci l'ID della tartaruga da visualizzare.");
+		JLabel lblNewLabel = new JLabel("Inserisci ID interno da visualizzare.");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel.setBounds(155, 54, 364, 32);
+		lblNewLabel.setBounds(170, 54, 291, 32);
 		primoPannello.add(lblNewLabel);
 
 		textVisualizzaTarta = new JTextField();
@@ -280,10 +287,12 @@ public class finestraAltriLavoratori extends JFrame {
 				tartarugaDao tartarugaDao = new tartarugaDao();
 				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
 
+//				table_1.setModel(tartarugaDao.sceltaTartaruga());
+				
 				if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
+//					textFieldVisual.setVisible(true);
 
-					textFieldVisual.setText((textVisualizzaTarta.getText()));
-
+					textFieldVisual.setText((tartarugaDao.selectTartarugaStringa(textVisualizzaTarta.getText())));
 					primoPannello.setVisible(false);
 					secondoPannello.setVisible(true);
 					dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
@@ -293,20 +302,26 @@ public class finestraAltriLavoratori extends JFrame {
 					dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
 					dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
 					dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
-					dispLuogoRitrova
-							.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
+					dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
+					
+
+//					primoPannello.setVisible(false);
+//					secondoPannello.setVisible(true);
+//					dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
+//					dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
+//					dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
+//					dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
+//					dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
+//					dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
+//					dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
+//					dispLuogoRitrova
+//							.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
 
 					textVisualizzaTarta.setText(null);
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
 				}
-
-//				if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
-//					textFieldVisual.setVisible(true);
-//					textFieldVisual.setText((textVisualizzaTarta.getText()));
-//				} else {
-//					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
-//				}
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon("images\\Cattura (1).png"));
@@ -332,7 +347,7 @@ public class finestraAltriLavoratori extends JFrame {
 
 			}
 		});
-		textFieldVisual.setBounds(170, 140, 291, 32);
+		textFieldVisual.setBounds(650, 0, 28, 32);
 		primoPannello.add(textFieldVisual);
 		textFieldVisual.setColumns(10);
 		secondoPannello.setLayout(null);
@@ -613,6 +628,16 @@ public class finestraAltriLavoratori extends JFrame {
 		lblNewLabel_25.setIcon(new ImageIcon("images\\WorkerIcon (2) (1) (1).png"));
 		lblNewLabel_25.setBounds(33, 32, 50, 62);
 		primoPannello.add(lblNewLabel_25);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(170, 142, 291, 105);
+		primoPannello.add(scrollPane_1);
+		
+		table_1 = new JTable();
+		scrollPane_1.setViewportView(table_1);
+		
+		tartarugaDao tartarugaDao = new tartarugaDao();
+		table_1.setModel(tartarugaDao.sceltaTartaruga());
 
 	}
 }

@@ -67,8 +67,10 @@ public class primaFinestraMedico extends JFrame {
 	private JLabel lblNewLabel_25;
 	private JButton btnNewButton_4;
 	private JTable table;
+	private JLabel lblNewLabel_23;
+	private JScrollPane scrollPane_2;
+	private JTable table_1;
 
-	
 	public primaFinestraMedico(finestraLOGIN m1) {
 		finestraMain = m1;
 		finestraRiammPrimoacc finestramezzo = new finestraRiammPrimoacc(this);
@@ -138,29 +140,28 @@ public class primaFinestraMedico extends JFrame {
 		lblNewLabel_25.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
 		lblNewLabel_25.setBounds(28, 94, 225, 25);
 		statPannello.add(lblNewLabel_25);
-		
+
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Annuale", "Mensile"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Annuale", "Mensile" }));
 		comboBox.setBounds(430, 168, 88, 32);
 		statPannello.add(comboBox);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 217, 658, 229);
 		statPannello.add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
+
 		btnNewButton_4 = new JButton("");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
-				
-				if(comboBox.getSelectedIndex() == 0) {
-					
+
+				if (comboBox.getSelectedIndex() == 0) {
+
 					table.setModel(cartellaClinicaDao.statisticheAnnuali());
-				}
-				else {
+				} else {
 					table.setModel(cartellaClinicaDao.statisticheMensili());
 				}
 			}
@@ -169,7 +170,12 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton_4.setBounds(528, 168, 28, 32);
 		statPannello.add(btnNewButton_4);
-		
+
+		lblNewLabel_23 = new JLabel("New label");
+		lblNewLabel_23.setIcon(new ImageIcon("images\\Squirtle (1).png"));
+		lblNewLabel_23.setBounds(469, 31, 88, 91);
+		statPannello.add(lblNewLabel_23);
+
 		btnNewButton_2 = new JButton("Indietro");
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -285,7 +291,7 @@ public class primaFinestraMedico extends JFrame {
 		textVisualizzaTarta.setBounds(178, 99, 291, 32);
 		primoPannello.add(textVisualizzaTarta);
 		textVisualizzaTarta.setColumns(10);
-
+		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon("images\\Cattura (1).png"));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -295,10 +301,23 @@ public class primaFinestraMedico extends JFrame {
 				tartarugaDao tartarugaDao = new tartarugaDao();
 				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
 
+//				table_1.setModel(tartarugaDao.sceltaTartaruga());
+				
 				if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
-					textFieldVisual.setVisible(true);
+//					textFieldVisual.setVisible(true);
 
-					textFieldVisual.setText((textVisualizzaTarta.getText()));
+					textFieldVisual.setText((tartarugaDao.selectTartarugaStringa(textVisualizzaTarta.getText())));
+					primoPannello.setVisible(false);
+					secondoPannello.setVisible(true);
+					dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
+					dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
+					dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
+					dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
+					dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
+					dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
+					dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
+					dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
+					
 
 //					primoPannello.setVisible(false);
 //					secondoPannello.setVisible(true);
@@ -313,6 +332,7 @@ public class primaFinestraMedico extends JFrame {
 //							.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
 
 					textVisualizzaTarta.setText(null);
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
 				}
@@ -322,9 +342,9 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton.setBounds(479, 99, 28, 32);
 		primoPannello.add(btnNewButton);
 
-		JLabel lblNewLabel = new JLabel("Inserisci l'ID della targhetta da visualizzare.");
+		JLabel lblNewLabel = new JLabel("Inserisci ID interno da visualizzare.");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel.setBounds(157, 56, 364, 32);
+		lblNewLabel.setBounds(178, 56, 291, 32);
 		primoPannello.add(lblNewLabel);
 
 		textFieldVisual = new JTextField();
@@ -334,21 +354,21 @@ public class primaFinestraMedico extends JFrame {
 				tartarugaDao tartarugaDao = new tartarugaDao();
 				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
 
-				primoPannello.setVisible(false);
-				secondoPannello.setVisible(true);
-				dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
-				dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
-				dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
-				dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
-				dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
-				dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
-				dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
-				dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
+//				primoPannello.setVisible(false);
+//				secondoPannello.setVisible(true);
+//				dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
+//				dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
+//				dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
+//				dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
+//				dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
+//				dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
+//				dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
+//				dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
 
 			}
 		});
 		textFieldVisual.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textFieldVisual.setBounds(178, 142, 291, 32);
+		textFieldVisual.setBounds(657, 1, 21, 32);
 		primoPannello.add(textFieldVisual);
 		textFieldVisual.setColumns(10);
 		textFieldVisual.setVisible(false);
@@ -373,9 +393,9 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
-				
+
 				textEntrate.setText(cartellaClinicaDao.selectStatistiche());
-				
+
 				primoPannello.setVisible(false);
 				statPannello.setVisible(true);
 
@@ -392,9 +412,28 @@ public class primaFinestraMedico extends JFrame {
 
 		lblNewLabel_21 = new JLabel("New label");
 		lblNewLabel_21.setIcon(new ImageIcon("images\\MedicoVeterinario (1) (1) (1).png"));
-		lblNewLabel_21.setBounds(39, 34, 62, 65);
+		lblNewLabel_21.setBounds(47, 34, 62, 65);
 		primoPannello.add(lblNewLabel_21);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(465, 142, -285, 76);
+		primoPannello.add(scrollPane_1);
+		
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		scrollPane_2.setBounds(178, 142, 291, 106);
+		primoPannello.add(scrollPane_2);
+		
+		table_1 = new JTable();
+		scrollPane_2.setViewportView(table_1);
 
+		tartarugaDao tartarugaDao = new tartarugaDao();
+		table_1.setModel(tartarugaDao.sceltaTartaruga());
+		
 		btnIndietro2 = new JButton("Indietro");
 		btnIndietro2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnIndietro2.addActionListener(new ActionListener() {

@@ -9,18 +9,14 @@ import CollegamentoDataBase.collegamentoDB;
 public class personaleDao {
 	collegamentoDB connessione = new collegamentoDB();
 
-	// Sistema di LOG-IN
 	public boolean logIn(String matricola) {
 		boolean flag = false;
 
 		try {
-			String queryLogin = "SELECT matricola FROM personale WHERE matricola = '" + matricola + "'"; // crea una
-																											// queri in
-																											// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			String queryLogin = "SELECT matricola FROM personale WHERE matricola = '" + matricola + "'";
 
-			// se non ci sta nulla, blocca il programma
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 
 			if (!rsLogin.next()) {
 

@@ -8,8 +8,6 @@ import CollegamentoDataBase.collegamentoDB;
 public class vascaDao {
 	collegamentoDB connessione = new collegamentoDB();
 
-	// inserimento all'interno di vasca
-	// ---------------------------------------------------------------------------------------------
 	public void insertNumeroVasca(String NumeroVasca, String idVasca) {
 
 		try {
