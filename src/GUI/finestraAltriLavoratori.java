@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -25,10 +26,13 @@ import dao.tartarugaDao;
 import dao.vascaDao;
 
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
 
 public class finestraAltriLavoratori extends JFrame {
 
-	private JPanel backGroundPanel, primoPannello, secondoPannello, terzoPannello, aggPannello;
+	private JPanel backGroundPanel, primoPannello, secondoPannello, terzoPannello, aggPannello, statPannello;
 	public finestraLOGIN finestraMain;
 	private JTextField textVisualizzaTarta;
 	private JTextField textFieldVisual;
@@ -80,10 +84,9 @@ public class finestraAltriLavoratori extends JFrame {
 	private JTextField textId;
 	private JLabel lblNewLabel_24;
 	private JLabel lblNewLabel_25;
+	private JTextField textEntrate;
+	private JTable table;
 
-	/**
-	 * Create the frame.
-	 */
 	public finestraAltriLavoratori(finestraLOGIN m1) {
 		finestraMain = m1;
 		controller controller = new controller();
@@ -117,12 +120,78 @@ public class finestraAltriLavoratori extends JFrame {
 		aggPannello.setBackground(new Color(165, 206, 218));
 		aggPannello.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		statPannello = new JPanel();
+		statPannello.setForeground(new Color(0, 0, 0));
+		statPannello.setBackground(new Color(165, 206, 218));
+		statPannello.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		
 		backGroundPanel.add(primoPannello);
 		backGroundPanel.add(terzoPannello);
 		backGroundPanel.add(secondoPannello);
 		backGroundPanel.add(aggPannello);
+		backGroundPanel.add(statPannello);
 		primoPannello.setLayout(null);
 		aggPannello.setLayout(null);
+		statPannello.setLayout(null);
+
+		JButton btnIndietro2_1 = new JButton("Indietro");
+		btnIndietro2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				statPannello.setVisible(false);
+				primoPannello.setVisible(true);
+			}
+		});
+		btnIndietro2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnIndietro2_1.setBounds(10, 11, 101, 23);
+		statPannello.add(btnIndietro2_1);
+
+		JLabel lblNewLabel_25_1 = new JLabel("Numero di tartarughe totali:");
+		lblNewLabel_25_1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_25_1.setBounds(29, 94, 225, 25);
+		statPannello.add(lblNewLabel_25_1);
+
+		textEntrate = new JTextField();
+		textEntrate.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textEntrate.setEditable(false);
+		textEntrate.setColumns(10);
+		textEntrate.setBounds(249, 93, 68, 29);
+		statPannello.add(textEntrate);
+
+		JLabel lblNewLabel_22_1 = new JLabel("Indicare in che modo visualizzare le statistiche:");
+		lblNewLabel_22_1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_22_1.setBounds(29, 178, 397, 23);
+		statPannello.add(lblNewLabel_22_1);
+
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Annuale", "Mensile" }));
+		comboBox.setBounds(419, 176, 88, 32);
+		statPannello.add(comboBox);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 217, 658, 229);
+		statPannello.add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+
+		JButton btnNewButton_4_1 = new JButton("");
+		btnNewButton_4_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
+
+				if (comboBox.getSelectedIndex() == 0) {
+
+					table.setModel(cartellaClinicaDao.statisticheAnnuali());
+				} else {
+					table.setModel(cartellaClinicaDao.statisticheMensili());
+				}
+			}
+		});
+		btnNewButton_4_1.setIcon(new ImageIcon("images\\Cattura (1).png"));
+		btnNewButton_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_4_1.setBounds(515, 176, 28, 32);
+		statPannello.add(btnNewButton_4_1);
 
 		btnNewButton_5 = new JButton("Indietro");
 		btnNewButton_5.addActionListener(new ActionListener() {
@@ -523,6 +592,12 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_4 = new JButton("Statistiche");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
+
+				textEntrate.setText(cartellaClinicaDao.selectStatistiche());
+
+				primoPannello.setVisible(false);
+				statPannello.setVisible(true);
 			}
 		});
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));

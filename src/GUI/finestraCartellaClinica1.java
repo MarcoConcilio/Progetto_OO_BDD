@@ -159,7 +159,7 @@ public class finestraCartellaClinica1 extends JFrame {
 
 		textNumCart = new JTextField();
 		textNumCart.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textNumCart.setBounds(180, 136, 86, 26);
+		textNumCart.setBounds(180, 137, 86, 26);
 		pannelloPrimo.add(textNumCart);
 		textNumCart.setColumns(10);
 
