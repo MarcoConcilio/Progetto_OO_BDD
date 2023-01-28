@@ -21,7 +21,7 @@ public class controller {
 	// Metodo per controllare se la cartella clinica è vuota 
 	// ---------------------------------------------------------------------------------------------
 	public void invioDB(String numCartella, String idTart, String nome, String lunghezza, String larghezza, String peso,
-			String specie, String luogoRitr, Date dataIns) {
+			String specie, String luogoRitr, Date dataIns, int idAutoincrement, String Targhetta) {
 
 		if (idTart.isEmpty() || numCartella.isEmpty() || nome.isEmpty() || specie.isEmpty() || lunghezza.isEmpty()
 				|| larghezza.isEmpty() || peso.isEmpty()) {
@@ -29,7 +29,7 @@ public class controller {
 		} else { // serve creare prima le tartarughe
 
 			cartellaClinicaDao.insertCartClin(numCartella, idTart, nome, lunghezza, larghezza, peso, specie, luogoRitr,
-					dataIns);
+					dataIns, idAutoincrement, Targhetta);
 		}
 
 	}
@@ -43,7 +43,6 @@ public class controller {
 				|| pinne.isEmpty() || coda.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Devi inserire i parametri obbligatori.");
 		} else {
-			JOptionPane.showMessageDialog(null, "Cartella clinica inviata.");
 			stato_tartarugaDao.insertStatoTartaruga(testa, occhi, naso, becco, collo, pinne, coda, idStato);
 		}
 	}
@@ -51,7 +50,7 @@ public class controller {
 	// metodo per inviare le cose a CARTELLA CLINICA
 	// ---------------------------------------------------------------------------------------------
 	public void controlloCC(String numCartella, String idTart, String nome, String lunghezza, String larghezza,
-			String peso, String specie, String luogoRitr, String dataIns) {
+			String peso, String specie, String luogoRitr, String dataIns, int idAutoincrement, String Targhetta) {
 
 		try {
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -59,7 +58,7 @@ public class controller {
 			date = sdf1.parse(dataIns);
 			java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
 
-			invioDB(numCartella, idTart, nome, lunghezza, larghezza, peso, specie, luogoRitr, sqlStartDate);
+			invioDB(numCartella, idTart, nome, lunghezza, larghezza, peso, specie, luogoRitr, sqlStartDate, idAutoincrement, Targhetta);
 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
@@ -75,7 +74,6 @@ public class controller {
 		else {
 			vascaDao.insertNumeroVasca(vasca, vasca);
 			tartarugaDao.insertTarta(nome, id);
-			JOptionPane.showMessageDialog(null, "Tartaruga aggiunta correttamente.");
 		}
 	}
 

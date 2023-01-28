@@ -26,8 +26,6 @@ public class finestraLOGIN extends JFrame {
 	private JPanel pannelloBase;
 	private JTextField textUsername;
 	private String stringa;
-	// public String nomeDottore = "a";
-	// public String passDottore = "a";
 
 	/**
 	 * Create the frame.

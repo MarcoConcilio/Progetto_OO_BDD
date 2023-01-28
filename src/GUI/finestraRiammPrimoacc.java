@@ -31,16 +31,22 @@ public class finestraRiammPrimoacc extends JFrame {
 	private JTextField textFieldRicerca;
 	private JTextField inserimentoVasca;
 	private JTextField textFieldNascosto;
-	private JTextField textNuovoIdTart;
-	String stringa;
-
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private String stringa;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	
 	/**
 	 * Create the frame.
 	 */
 	public finestraRiammPrimoacc(primaFinestraMedico f1) {
 		finestraMezzo = f1;
 		finestraCartellaClinica1 cartmedica1 = new finestraCartellaClinica1(this);
-
+		finestraCartellaClinicaRiammissione cartellaRiammissione = new finestraCartellaClinicaRiammissione(this);
 
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(600, 300, 526, 390);
@@ -73,16 +79,86 @@ public class finestraRiammPrimoacc extends JFrame {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_2.setBounds(10, 11, 89, 23);
 		pannelloSecondo.add(btnNewButton_2);
-
-		JLabel lblNewLabel_2 = new JLabel("Inserisci nuovo ID della tartaruga:");
-		lblNewLabel_2.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(117, 107, 256, 23);
+		
+		JLabel lblNewLabel_2 = new JLabel("Testa:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_2.setBounds(50, 77, 49, 26);
 		pannelloSecondo.add(lblNewLabel_2);
-
-		textNuovoIdTart = new JTextField();
-		textNuovoIdTart.setBounds(117, 141, 256, 20);
-		pannelloSecondo.add(textNuovoIdTart);
-		textNuovoIdTart.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Occhi:");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_3.setBounds(50, 122, 49, 26);
+		pannelloSecondo.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Naso:");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_4.setBounds(53, 162, 46, 23);
+		pannelloSecondo.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Becco:");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_5.setBounds(270, 128, 52, 14);
+		pannelloSecondo.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Coda:");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_6.setBounds(276, 83, 46, 14);
+		pannelloSecondo.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Pinne:");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_7.setBounds(50, 207, 49, 23);
+		pannelloSecondo.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("Collo:");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_8.setBounds(276, 171, 46, 14);
+		pannelloSecondo.add(lblNewLabel_8);
+		
+		textField = new JTextField();
+		textField.setBounds(100, 80, 115, 26);
+		pannelloSecondo.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_9 = new JLabel("Aggiungere una descrizione:");
+		lblNewLabel_9.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_9.setBounds(124, 21, 252, 32);
+		pannelloSecondo.add(lblNewLabel_9);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(102, 122, 115, 26);
+		pannelloSecondo.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(102, 162, 115, 26);
+		pannelloSecondo.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(102, 208, 115, 26);
+		pannelloSecondo.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(326, 77, 115, 26);
+		pannelloSecondo.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(326, 125, 115, 26);
+		pannelloSecondo.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(326, 166, 115, 26);
+		pannelloSecondo.add(textField_6);
+		
+		JButton btnNewButton_3 = new JButton("Invia");
+		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_3.setBounds(326, 242, 115, 23);
+		pannelloSecondo.add(btnNewButton_3);
 		
 		inserimentoVasca = new JTextField();
 		inserimentoVasca.setBounds(303, 213, 167, 20);
@@ -93,13 +169,6 @@ public class finestraRiammPrimoacc extends JFrame {
 		textFieldNascosto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				stringa = textFieldNascosto.getText();
-				pannelloPrimo.setVisible(false);
-				pannelloSecondo.setVisible(true);
-
-				textFieldRicerca.setText(null);
-				textFieldNascosto.setText(null);
 			}
 		});
 		textFieldNascosto.setBounds(23, 241, 212, 31);
@@ -107,31 +176,6 @@ public class finestraRiammPrimoacc extends JFrame {
 		textFieldNascosto.setColumns(10);
 		textFieldNascosto.setVisible(false);
 		inserimentoVasca.setVisible(false);
-
-		JLabel lblNewLabel_3 = new JLabel("Cambia ID");
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (textNuovoIdTart.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "L'ID della targhetta non può essere vuoto!");
-				} else {
-
-					vascaDao vascaDao = new vascaDao();
-					tartarugaDao tartarugaDao = new tartarugaDao();
-					cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
-
-					cartellaClinicaDao.updateIDTartarugaCartClin(textNuovoIdTart.getText(), textNuovoIdTart.getText(), stringa);
-					vascaDao.updateIDTartarugaVasca(textNuovoIdTart.getText(), stringa);
-					tartarugaDao.updateIDTartarugaTartaruga(textNuovoIdTart.getText(), stringa);
-
-					JOptionPane.showMessageDialog(null, "Nuovo ID della targhetta inviato.");
-				}
-			}
-		});
-		lblNewLabel_3.setForeground(new Color(0, 64, 128));
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-		lblNewLabel_3.setBounds(348, 172, 74, 14);
-		pannelloSecondo.add(lblNewLabel_3);
 
 		JLabel SCRITTURA3 = new JLabel("Inserisci l'ID della vasca");
 		SCRITTURA3.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
@@ -150,7 +194,7 @@ public class finestraRiammPrimoacc extends JFrame {
 		SCRITTURA5.setBounds(303, 177, 85, 31);
 		pannelloPrimo.add(SCRITTURA5);
 		SCRITTURA5.setVisible(false);
-
+		
 		JLabel successivo = new JLabel("Successivo");
 		successivo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -184,12 +228,12 @@ public class finestraRiammPrimoacc extends JFrame {
 				tartarugaDao tartarugaDao = new tartarugaDao();
 
 				if (tartarugaDao.selectTartaruga(textFieldRicerca.getText())) {
-					textFieldNascosto.setVisible(true);
-					textFieldNascosto.setText((textFieldRicerca.getText()));
+					stringa = textFieldRicerca.getText();
+					setVisible(false);
+					cartellaRiammissione.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
 				}
-
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon("images\\Cattura (1).png"));
@@ -240,6 +284,8 @@ public class finestraRiammPrimoacc extends JFrame {
 		pannelloPrimo.add(textFieldRicerca);
 		textFieldRicerca.setColumns(10);
 		textFieldRicerca.setVisible(false);
+		
+		stringa = textFieldRicerca.getText();
 
 		JButton btnNewButton = new JButton("Riammessa");
 		btnNewButton.addActionListener(new ActionListener() {

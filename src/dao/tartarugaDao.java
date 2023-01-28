@@ -5,18 +5,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import CollegamentoDataBase.collegamentoDB;
 
 public class tartarugaDao {
 	collegamentoDB connessione = new collegamentoDB();
-	
+
 	// inserimento all'interno di tartaruga
 	// ---------------------------------------------------------------------------------------------
 	public void insertTarta(String idTart, String nome) {
 
 		try {
 
-			String query = "INSERT INTO tartaruga (id_tartaruga, nome, targhetta) VALUES (?,?,true)";
+			String query = "INSERT INTO tartaruga (targhetta, nome) VALUES (?,?)";
 
 			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
 
@@ -25,8 +27,10 @@ public class tartarugaDao {
 
 			prepStatementQuery.executeUpdate();
 
+			JOptionPane.showMessageDialog(null, "Tartaruga aggiunta correttamente.");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "ID Targhetta gia' presente!");
 		}
 	}
 
@@ -36,10 +40,10 @@ public class tartarugaDao {
 		boolean flag = false;
 
 		try {
-			String queryLogin = "SELECT id_tartaruga FROM tartaruga WHERE id_tartaruga = '" + idTart + "'"; // crea una
-																											// queri
-																											// in
-																											// postgress
+			String queryLogin = "SELECT targhetta FROM tartaruga WHERE targhetta = '" + idTart + "'"; // crea una
+																										// queri
+																										// in
+																										// postgress
 			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
 
@@ -68,15 +72,15 @@ public class tartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT id_tartaruga FROM tartaruga WHERE id_tartaruga = '" + idTart + "'"; // crea una
-																											// queri in
-																											// postgress
+			String queryLogin = "SELECT targhetta FROM tartaruga WHERE targhetta = '" + idTart + "'"; // crea una
+																										// queri in
+																										// postgress
 			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
 
 			if (rsLogin.next()) {
 
-				risultato = rsLogin.getString("id_tartaruga");
+				risultato = rsLogin.getString("targhetta");
 			}
 
 			connessione.getConnection().close();
@@ -86,25 +90,55 @@ public class tartarugaDao {
 		return risultato;
 	}
 
-	// update di id_tartaruga dentro tartaruga dopo la riammissione
+	// Metodo per displayare il nome della tartaruga associata e la vasca alla
+	// tartaruga
 	// ---------------------------------------------------------------------------------------------
-	public void updateIDTartarugaTartaruga(String idTart, String idVecchio) {
+	public String displayNomeTartaruga(String idTart) {
+		String risultato = new String();
 
 		try {
+			String queryLogin = "SELECT nome FROM tartaruga WHERE targhetta = '" + idTart + "'"; // crea
+																									// una
+																									// queri
+																									// in
+																									// postgress
+			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
 
-			String query = "UPDATE tartaruga SET id_tartaruga = ? , primoaccesso = false where id_tartaruga = ?";
+			if (rsLogin.next()) {
 
-			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
+				risultato = rsLogin.getString("nome");
+			}
 
-			prepStatementQuery.setString(1, idTart);
-			prepStatementQuery.setString(2, idVecchio);
-			
-			System.out.println(prepStatementQuery);
-			
-			prepStatementQuery.executeUpdate();
-
+			connessione.getConnection().close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.getStackTrace();
 		}
+		return risultato;
+	}
+
+	public int selectUltimoIDTartaruga() {
+		collegamentoDB connessione1 = new collegamentoDB();
+		int risultato = -1;
+
+		try {
+			String queryLogin = "SELECT MAX(id_tartaruga) FROM tartaruga"; // crea
+																			// una
+																			// queri
+																			// in
+																			// postgress
+			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+
+			if (rsLogin.next()) {
+
+				risultato = Integer.valueOf(rsLogin.getString(1));
+			}
+
+			connessione1.getConnection().close();
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return risultato;
 	}
 }

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.table.DefaultTableModel;
+
 import CollegamentoDataBase.collegamentoDB;
 
 public class cartellaClinicaDao {
@@ -14,11 +16,11 @@ public class cartellaClinicaDao {
 	// Sistema di inserimento dentro la cartella clinica
 	// ---------------------------------------------------------------------------------------------
 	public void insertCartClin(String numCartella, String idTart, String nome, String lunghezza, String larghezza,
-			String peso, String specie, String luogoRitr, Date dataIngr) {
+			String peso, String specie, String luogoRitr, Date dataIngr, int idIncrement, String Targhetta) {
 
 		try {
 
-			String query = "INSERT INTO cartella_clinica (specie, lunghezza, larghezza, peso, luogo_ritrovamento, id_cartellaclinica, id_tartaruga, nome_tartaruga, data_ingresso) VALUES (?,?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO cartella_clinica (specie, lunghezza, larghezza, peso, luogo_ritrovamento, id_cartellaclinica, nome_tartaruga, data_ingresso, id_tartaruga, targhetta, costante) VALUES (?,?,?,?,?,?,?,?,?,?,0)";
 
 			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
 
@@ -28,44 +30,16 @@ public class cartellaClinicaDao {
 			prepStatementQuery.setString(4, peso);
 			prepStatementQuery.setString(5, luogoRitr);
 			prepStatementQuery.setString(6, numCartella);
-			prepStatementQuery.setString(7, idTart);
-			prepStatementQuery.setString(8, nome);
-			prepStatementQuery.setDate(9, dataIngr);
+			prepStatementQuery.setString(7, nome);
+			prepStatementQuery.setDate(8, dataIngr);
+			prepStatementQuery.setInt(9, idIncrement);
+			prepStatementQuery.setString(10, Targhetta);
 
-			
-			
 			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	// Metodo per displayare il nome della tartaruga associata e la vasca alla
-	// tartaruga
-	// ---------------------------------------------------------------------------------------------
-	public String displayNomeTartaruga(String idTart) {
-		String risultato = new String();
-
-		try {
-			String queryLogin = "SELECT nome_tartaruga FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; // crea
-																														// una
-																														// queri
-																														// in
-																														// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
-
-			if (rsLogin.next()) {
-
-				risultato = rsLogin.getString("nome_tartaruga");
-			}
-
-			connessione.getConnection().close();
-		} catch (SQLException e) {
-			e.getStackTrace();
-		}
-		return risultato;
 	}
 
 	// Metodo per displayare il numero cartella della tartaruga associata e la vasca
@@ -76,8 +50,8 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT id_cartellaclinica FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; // crea
-																															// una
+			String queryLogin = "SELECT id_cartellaclinica FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
+																														// una
 			// queri in
 			// postgress
 			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
@@ -102,9 +76,9 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT peso FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; // crea una
-																											// queri in
-																											// postgress
+			String queryLogin = "SELECT peso FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea una
+																										// queri in
+																										// postgress
 			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
 
@@ -127,7 +101,7 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT larghezza FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; // crea
+			String queryLogin = "SELECT larghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
 																												// una
 			// queri in
 			// postgress
@@ -153,7 +127,7 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT lunghezza FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; // crea
+			String queryLogin = "SELECT lunghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
 																												// una
 			// queri in
 			// postgress
@@ -179,8 +153,8 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT specie FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; // crea
-																												// una
+			String queryLogin = "SELECT specie FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
+																											// una
 			// queri in
 			// postgress
 			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
@@ -206,7 +180,7 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT luogo_ritrovamento FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; // crea
+			String queryLogin = "SELECT luogo_ritrovamento FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
 			// una
 			// queri in
 			// postgress
@@ -225,25 +199,118 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
-	// update di id_tartaruga dentro cartella_clinica dopo la riammissione
+	// update di targhetta dentro cartella_clinica dopo la riammissione
 	// ---------------------------------------------------------------------------------------------
 	public void updateIDTartarugaCartClin(String idTart, String idTart2, String idVecchio) {
 
 		try {
 
-			String query = "UPDATE cartella_clinica SET id_tartaruga = ? AND id_cartellaclinica = '?' where id_tartaruga = ?";
+			String query = "UPDATE cartella_clinica SET targhetta = ? AND id_cartellaclinica = '?' where targhetta = ?";
 
 			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
 
 			prepStatementQuery.setString(1, idTart);
 			prepStatementQuery.setString(2, idTart2);
 			prepStatementQuery.setString(3, idVecchio);
-		
-			
+
 			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
+	// Seleziona le tartarughe entrate tra due anni inseriti dall'utente
+	// ---------------------------------------------------------------------------------------------
+//	public String selectStatistiche(String dataInizio, String dataFine) {
+//		String risultato = new String();
+//
+//		try {
+//			String queryLogin = "select count(cc.data_ingresso) from cartella_clinica as cc join statistiche as s on (cc.costante = s.costante) where cc.data_ingresso between '"
+//					+ dataInizio + "' AND '" + dataFine + "'";
+//
+//			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
+//			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+//
+//			if (rsLogin.next()) {
+//
+//				risultato = rsLogin.getString(1);
+//			}
+//
+//			connessione.getConnection().close();
+//		} catch (SQLException e) {
+//			e.getStackTrace();
+//		}
+//		return risultato;
+//	}
+
+	public String selectStatistiche() {
+		String risultato = new String();
+
+		try {
+			String queryLogin = "select count(cc.data_ingresso) from cartella_clinica as cc join statistiche as s on (cc.costante = s.costante) where cc.data_ingresso between s.data_inizio AND s.data_fine";
+
+			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+
+			if (rsLogin.next()) {
+
+				risultato = rsLogin.getString(1);
+			}
+
+			connessione.getConnection().close();
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return risultato;
+	}
+
+	public DefaultTableModel statisticheAnnuali() {
+		DefaultTableModel modello = new DefaultTableModel();
+		modello.addColumn("Nome");
+		modello.addColumn("Targhetta");
+		modello.addColumn("Data Ingresso");
+		modello.addColumn("Anno");
+		try {
+			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( YEAR FROM c.data_ingresso) from cartella_clinica as c order by c.data_ingresso";
+
+			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			
+			while (rsLogin.next()) {
+
+				modello.addRow(new Object[] {rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3), rsLogin.getString(4)}); 								
+			}
+
+			connessione.getConnection().close();
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return modello;
+	}
+
+	public DefaultTableModel statisticheMensili() {
+		DefaultTableModel modello = new DefaultTableModel();
+		modello.addColumn("Nome");
+		modello.addColumn("Targhetta");
+		modello.addColumn("Data Ingresso");
+		modello.addColumn("Mese");
+		try {
+			String queryLogin = "select c.nome_tartaruga, c.targhetta, c.data_ingresso, EXTRACT ( MONTH FROM c.data_ingresso) from cartella_clinica as c order by c.data_ingresso";
+
+			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			
+			while (rsLogin.next()) {
+
+				modello.addRow(new Object[] {rsLogin.getString(1), rsLogin.getString(2), rsLogin.getString(3), rsLogin.getString(4)}); 								
+			}
+
+			connessione.getConnection().close();
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return modello;
+	}
+
 }

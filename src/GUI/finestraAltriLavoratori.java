@@ -78,6 +78,8 @@ public class finestraAltriLavoratori extends JFrame {
 	private JLabel lblNewLabel_23;
 	private JTextField textNome;
 	private JTextField textId;
+	private JLabel lblNewLabel_24;
+	private JLabel lblNewLabel_25;
 
 	/**
 	 * Create the frame.
@@ -85,7 +87,6 @@ public class finestraAltriLavoratori extends JFrame {
 	public finestraAltriLavoratori(finestraLOGIN m1) {
 		finestraMain = m1;
 		controller controller = new controller();
-		
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +111,7 @@ public class finestraAltriLavoratori extends JFrame {
 		terzoPannello.setForeground(new Color(0, 0, 0));
 		terzoPannello.setBackground(new Color(165, 206, 218));
 		terzoPannello.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+
 		aggPannello = new JPanel();
 		aggPannello.setForeground(new Color(0, 0, 0));
 		aggPannello.setBackground(new Color(165, 206, 218));
@@ -122,7 +123,7 @@ public class finestraAltriLavoratori extends JFrame {
 		backGroundPanel.add(aggPannello);
 		primoPannello.setLayout(null);
 		aggPannello.setLayout(null);
-		
+
 		btnNewButton_5 = new JButton("Indietro");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -133,33 +134,33 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton_5.setBounds(10, 11, 99, 23);
 		aggPannello.add(btnNewButton_5);
-		
+
 		lblNewLabel_19 = new JLabel("Inserisci dati della tartaruga:");
 		lblNewLabel_19.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 24));
 		lblNewLabel_19.setBounds(50, 184, 297, 36);
 		aggPannello.add(lblNewLabel_19);
-		
+
 		lblNewLabel_20 = new JLabel("Nome:");
 		lblNewLabel_20.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 19));
-		lblNewLabel_20.setBounds(144, 244, 55, 29);
+		lblNewLabel_20.setBounds(144, 311, 55, 29);
 		aggPannello.add(lblNewLabel_20);
-		
+
 		JLabel lblNewLabel_21 = new JLabel("Numero vasca:");
 		lblNewLabel_21.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 19));
 		lblNewLabel_21.setBounds(77, 114, 122, 36);
 		aggPannello.add(lblNewLabel_21);
-		
+
 		inserimentoVasca = new JTextField();
 		inserimentoVasca.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		inserimentoVasca.setBounds(207, 120, 140, 32);
 		aggPannello.add(inserimentoVasca);
 		inserimentoVasca.setColumns(10);
-		
+
 		JButton btnNewButton_6 = new JButton("Invia");
 		btnNewButton_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				controller.invioTartar(inserimentoVasca.getText(), textNome.getText(), textId.getText());
 				aggPannello.setVisible(false);
 				primoPannello.setVisible(true);
@@ -170,23 +171,23 @@ public class finestraAltriLavoratori extends JFrame {
 		});
 		btnNewButton_6.setBounds(248, 371, 99, 23);
 		aggPannello.add(btnNewButton_6);
-		
+
 		lblNewLabel_22 = new JLabel("Inserisci il numero della vasca:");
 		lblNewLabel_22.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 24));
 		lblNewLabel_22.setBounds(29, 61, 318, 32);
 		aggPannello.add(lblNewLabel_22);
-		
+
 		lblNewLabel_23 = new JLabel("Id Targhetta:");
 		lblNewLabel_23.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 19));
-		lblNewLabel_23.setBounds(95, 304, 104, 36);
+		lblNewLabel_23.setBounds(95, 243, 104, 36);
 		aggPannello.add(lblNewLabel_23);
-		
+
 		textNome = new JTextField();
 		textNome.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textNome.setColumns(10);
 		textNome.setBounds(207, 246, 140, 32);
 		aggPannello.add(textNome);
-		
+
 		textId = new JTextField();
 		textId.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textId.setColumns(10);
@@ -195,31 +196,53 @@ public class finestraAltriLavoratori extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Inserisci l'ID della tartaruga da visualizzare.");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel.setBounds(146, 48, 364, 32);
+		lblNewLabel.setBounds(155, 54, 364, 32);
 		primoPannello.add(lblNewLabel);
 
 		textVisualizzaTarta = new JTextField();
 		textVisualizzaTarta.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textVisualizzaTarta.setColumns(10);
-		textVisualizzaTarta.setBounds(146, 90, 291, 32);
+		textVisualizzaTarta.setBounds(170, 97, 291, 32);
 		primoPannello.add(textVisualizzaTarta);
 
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tartarugaDao tartarugaDao = new tartarugaDao();
+				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
 
 				if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
-					textFieldVisual.setVisible(true);
+
 					textFieldVisual.setText((textVisualizzaTarta.getText()));
+
+					primoPannello.setVisible(false);
+					secondoPannello.setVisible(true);
+					dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
+					dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
+					dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
+					dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
+					dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
+					dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
+					dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
+					dispLuogoRitrova
+							.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
+
+					textVisualizzaTarta.setText(null);
 				} else {
 					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
 				}
+
+//				if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
+//					textFieldVisual.setVisible(true);
+//					textFieldVisual.setText((textVisualizzaTarta.getText()));
+//				} else {
+//					JOptionPane.showMessageDialog(null, "Nessun id trovato.");
+//				}
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon("images\\Cattura (1).png"));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(447, 91, 28, 32);
+		btnNewButton.setBounds(471, 97, 28, 32);
 		primoPannello.add(btnNewButton);
 
 		textFieldVisual = new JTextField();
@@ -229,7 +252,7 @@ public class finestraAltriLavoratori extends JFrame {
 				tartarugaDao tartarugaDao = new tartarugaDao();
 				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
 
-				dispNomeTart.setText(clinicaDao.displayNomeTartaruga(textFieldVisual.getText()));
+				dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
 				dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
 				dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
 				dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
@@ -240,7 +263,7 @@ public class finestraAltriLavoratori extends JFrame {
 
 			}
 		});
-		textFieldVisual.setBounds(146, 133, 291, 32);
+		textFieldVisual.setBounds(170, 140, 291, 32);
 		primoPannello.add(textFieldVisual);
 		textFieldVisual.setColumns(10);
 		secondoPannello.setLayout(null);
@@ -470,17 +493,17 @@ public class finestraAltriLavoratori extends JFrame {
 		terzoPannello.add(btnNewButton_3);
 		textFieldVisual.setVisible(false);
 		textFieldVisual.setEditable(false);
-		
+
 		lblNewLabel_16 = new JLabel("Clicca qui per aggiungere una");
 		lblNewLabel_16.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel_16.setBounds(20, 252, 259, 32);
+		lblNewLabel_16.setBounds(30, 252, 259, 32);
 		primoPannello.add(lblNewLabel_16);
-		
+
 		lblNewLabel_17 = new JLabel("tartaruga al DataBase.");
 		lblNewLabel_17.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel_17.setBounds(53, 279, 185, 35);
+		lblNewLabel_17.setBounds(65, 279, 185, 35);
 		primoPannello.add(lblNewLabel_17);
-		
+
 		buttonCartClin = new JButton("Aggiungi tartaruga");
 		buttonCartClin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -489,14 +512,14 @@ public class finestraAltriLavoratori extends JFrame {
 			}
 		});
 		buttonCartClin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		buttonCartClin.setBounds(34, 318, 217, 23);
+		buttonCartClin.setBounds(45, 318, 217, 23);
 		primoPannello.add(buttonCartClin);
-		
+
 		lblNewLabel_18 = new JLabel("Visualizza statistiche.");
 		lblNewLabel_18.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
 		lblNewLabel_18.setBounds(426, 280, 172, 32);
 		primoPannello.add(lblNewLabel_18);
-		
+
 		btnNewButton_4 = new JButton("Statistiche");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -505,6 +528,16 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton_4.setBounds(436, 318, 151, 23);
 		primoPannello.add(btnNewButton_4);
+
+		lblNewLabel_24 = new JLabel("Personale");
+		lblNewLabel_24.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 15));
+		lblNewLabel_24.setBounds(23, 11, 80, 23);
+		primoPannello.add(lblNewLabel_24);
+
+		lblNewLabel_25 = new JLabel("New label");
+		lblNewLabel_25.setIcon(new ImageIcon("images\\WorkerIcon (2) (1) (1).png"));
+		lblNewLabel_25.setBounds(33, 32, 50, 62);
+		primoPannello.add(lblNewLabel_25);
 
 	}
 }

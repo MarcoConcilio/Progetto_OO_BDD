@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.JRadioButton;
 
-public class finestraCartellaClinica1 extends JFrame {
+public class finestraCartellaClinicaRiammissione extends JFrame {
 
 	private JPanel pannelloPrimo, pannelloSecondo, backGroundPanel;
 	public finestraRiammPrimoacc finestra1;
@@ -74,11 +74,12 @@ public class finestraCartellaClinica1 extends JFrame {
 	private JLabel lblNewLabel_1;
 	private String stringa;
 	private JTextField textDataIns;
+	private JLabel lblNewLabel_9;
 
 	/**
 	 * Create the frame.
 	 */
-	public finestraCartellaClinica1(finestraRiammPrimoacc p1) {
+	public finestraCartellaClinicaRiammissione(finestraRiammPrimoacc p1) {
 		finestra1 = p1;
 
 //		tartarugaDao tartarugaDao = new tartarugaDao();
@@ -404,6 +405,10 @@ public class finestraCartellaClinica1 extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_2.setBounds(284, 313, 110, 14);
 		pannelloPrimo.add(lblNewLabel_2);
+		
+		lblNewLabel_9 = new JLabel("Riammissione");
+		lblNewLabel_9.setBounds(44, 38, 46, 14);
+		pannelloPrimo.add(lblNewLabel_9);
 
 	}
 }
