@@ -29,7 +29,7 @@ public class tartarugaDao {
 			JOptionPane.showMessageDialog(null, "Tartaruga aggiunta correttamente.");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "ID Targhetta gia' presente!");
+			JOptionPane.showMessageDialog(null, "Targhetta gia' presente!");
 		}
 	}
 
@@ -83,7 +83,7 @@ public class tartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT targhetta FROM tartaruga WHERE targhetta = '" + idTart + "'";
+			String queryLogin = "SELECT targhetta FROM tartaruga WHERE id_tartaruga = '" + idTart + "'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -104,7 +104,7 @@ public class tartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT nome FROM tartaruga WHERE targhetta = '" + idTart + "'";
+			String queryLogin = "SELECT nome FROM tartaruga WHERE id_tartaruga = '" + idTart + "'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);

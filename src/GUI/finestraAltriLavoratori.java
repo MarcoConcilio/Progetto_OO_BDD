@@ -143,7 +143,7 @@ public class finestraAltriLavoratori extends JFrame {
 		JButton btnIndietro2_1 = new JButton("Indietro");
 		btnIndietro2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(statPannello, primoPannello);
+				controller.cambioPanel(statPannello, primoPannello);
 			}
 		});
 		btnIndietro2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -246,7 +246,7 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_5 = new JButton("Indietro");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(aggPannello, primoPannello);
+				controller.cambioPanel(aggPannello, primoPannello);
 			}
 		});
 		btnNewButton_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -319,9 +319,9 @@ public class finestraAltriLavoratori extends JFrame {
 		lblNewLabel_22.setBounds(29, 61, 318, 32);
 		aggPannello.add(lblNewLabel_22);
 
-		lblNewLabel_23 = new JLabel("Id Targhetta:");
+		lblNewLabel_23 = new JLabel("Targhetta:");
 		lblNewLabel_23.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 19));
-		lblNewLabel_23.setBounds(95, 243, 104, 36);
+		lblNewLabel_23.setBounds(117, 243, 88, 36);
 		aggPannello.add(lblNewLabel_23);
 
 		textNome = new JTextField();
@@ -473,7 +473,7 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_1 = new JButton("Indietro");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(secondoPannello, primoPannello);
+				controller.cambioPanel(secondoPannello, primoPannello);
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -579,7 +579,7 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_3 = new JButton("Indietro");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(terzoPannello, secondoPannello);
+				controller.cambioPanel(terzoPannello, secondoPannello);
 			}
 		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -601,7 +601,7 @@ public class finestraAltriLavoratori extends JFrame {
 		buttonCartClin = new JButton("Aggiungi tartaruga");
 		buttonCartClin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(primoPannello, aggPannello);
+				controller.cambioPanel(primoPannello, aggPannello);
 			}
 		});
 		buttonCartClin.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -618,7 +618,7 @@ public class finestraAltriLavoratori extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
 				textEntrate.setText(cartellaClinicaDao.selectStatistiche());
-				controller.tastoIndietro(primoPannello, statPannello);
+				controller.cambioPanel(primoPannello, statPannello);
 			}
 		});
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));

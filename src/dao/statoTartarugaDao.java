@@ -11,11 +11,11 @@ public class statoTartarugaDao {
 	collegamentoDB connessione = new collegamentoDB();
 
 	public void insertStatoTartaruga(String testa, String occhi, String naso, String becco, String collo, String pinne,
-			String coda, String idStato) {
+			String coda) {
 
 		try {
 
-			String query = "INSERT INTO stato_tartaruga (testa, occhi, naso, becco, collo, pinne, coda, id_stato) VALUES (?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO stato_tartaruga (testa, occhi, naso, becco, collo, pinne, coda) VALUES (?,?,?,?,?,?,?)";
 
 			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
 
@@ -26,8 +26,8 @@ public class statoTartarugaDao {
 			prepStatementQuery.setString(5, collo);
 			prepStatementQuery.setString(6, pinne);
 			prepStatementQuery.setString(7, coda);
-			prepStatementQuery.setString(8, idStato);
-
+		
+			
 			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
@@ -39,7 +39,7 @@ public class statoTartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT testa FROM stato_tartaruga WHERE id_stato = '" + idTart + "'";
+			String queryLogin = "SELECT testa FROM stato_tartaruga as s join cartella_clinica as c on s.id_stato = c.id_stato where c.id_tartaruga = '"+idTart+"'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -60,7 +60,7 @@ public class statoTartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT occhi FROM stato_tartaruga WHERE id_stato = '" + idTart + "'";
+			String queryLogin = "SELECT occhi FROM stato_tartaruga as s join cartella_clinica as c on s.id_stato = c.id_stato where c.id_tartaruga = '"+idTart+"'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -81,7 +81,7 @@ public class statoTartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT naso FROM stato_tartaruga WHERE id_stato = '" + idTart + "'";
+			String queryLogin = "SELECT naso FROM stato_tartaruga as s join cartella_clinica as c on s.id_stato = c.id_stato where c.id_tartaruga = '"+idTart+"'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -101,7 +101,7 @@ public class statoTartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT becco FROM stato_tartaruga WHERE id_stato = '" + idTart + "'";
+			String queryLogin = "SELECT becco FROM stato_tartaruga as s join cartella_clinica as c on s.id_stato = c.id_stato where c.id_tartaruga = '"+idTart+"'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -122,7 +122,7 @@ public class statoTartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT coda FROM stato_tartaruga WHERE id_stato = '" + idTart + "'";
+			String queryLogin = "SELECT coda FROM stato_tartaruga as s join cartella_clinica as c on s.id_stato = c.id_stato where c.id_tartaruga = '"+idTart+"'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -143,7 +143,7 @@ public class statoTartarugaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT pinne FROM stato_tartaruga WHERE id_stato = '" + idTart + "'";
+			String queryLogin = "SELECT pinne FROM stato_tartaruga as s join cartella_clinica as c on s.id_stato = c.id_stato where c.id_tartaruga = '"+idTart+"'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -160,11 +160,11 @@ public class statoTartarugaDao {
 		return risultato;
 	}
 
-	public String displayColloTartaruga(String idCart) {
+	public String displayColloTartaruga(String idTart) {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT collo FROM stato_tartaruga WHERE id_stato = '" + idCart + "'";
+			String queryLogin = "SELECT collo FROM stato_tartaruga as s join cartella_clinica as c on s.id_stato = c.id_stato where c.id_tartaruga = '"+idTart+"'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -180,24 +180,4 @@ public class statoTartarugaDao {
 		}
 		return risultato;
 	}
-
-//	 update di id_stato dentro stato_tartaruga dopo la riammissione
-//	 ---------------------------------------------------------------------------------------------
-//	public void updateIDTartarugaCartClin(String idTart, String idVecchio) {
-//
-//		try {
-//
-//			String query = "UPDATE stato_tartaruga SET id_stato = ? where id_stato = ?";
-//
-//			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
-//
-//			prepStatementQuery.setString(1, idTart);
-//			prepStatementQuery.setString(2, idVecchio);
-//
-//			prepStatementQuery.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 }

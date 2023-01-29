@@ -25,43 +25,4 @@ public class vascaDao {
 			e.printStackTrace();
 		}
 	}
-
-	// update di id_targhetta dentro vasca (anche dopo riammissione)
-	// ---------------------------------------------------------------------------------------------
-//	public void updateIDTartarugaVasca(String idTart) {
-//
-//		try {
-//
-//			String query = "UPDATE numero_vasca SET id_targhetta = ?";
-//
-//			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
-//
-//			prepStatementQuery.setString(1, idTart);
-//
-//			prepStatementQuery.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-	// update di id_targhetta dentro vasca (anche dopo riammissione)
-	// ---------------------------------------------------------------------------------------------
-//	public void updateIDTartarugaVasca(String idTart, String idVecchio) {
-//
-//		try {
-//
-//			String query = "UPDATE numero_vasca SET id_targhetta = ? where id_targhetta = ?";
-//
-//			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
-//
-//			prepStatementQuery.setString(1, idTart);
-//			prepStatementQuery.setString(2, idVecchio);
-//
-//			prepStatementQuery.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 }

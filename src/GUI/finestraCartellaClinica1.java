@@ -104,7 +104,7 @@ public class finestraCartellaClinica1 extends JFrame {
 		Indietro2 = new JButton("Indietro");
 		Indietro2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(pannelloSecondo, pannelloPrimo);
+				controller.cambioPanel(pannelloSecondo, pannelloPrimo);
 			}
 		});
 		Indietro2.setBounds(10, 11, 89, 23);

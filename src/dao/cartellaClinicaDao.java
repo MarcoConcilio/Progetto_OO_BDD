@@ -44,12 +44,10 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT id_cartellaclinica FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea
-																														// una
-			// queri in
-			// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			String queryLogin = "SELECT id_cartellaclinica FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; 
+			
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 
 			if (rsLogin.next()) {
 
@@ -63,15 +61,35 @@ public class cartellaClinicaDao {
 		return risultato;
 	}
 
+	public String displayData(String idTart) {
+		String risultato = new String();
+
+		try {
+			String queryLogin = "SELECT data_ingresso FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'"; 
+			
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
+
+			if (rsLogin.next()) {
+
+				risultato = rsLogin.getString("data_ingresso");
+			}
+
+			connessione.getConnection().close();
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return risultato;
+	}
+	
 	public String displayPesoDellaTartaruga(String idTart) {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT peso FROM cartella_clinica WHERE targhetta = '" + idTart + "'"; // crea una
-																										// queri in
-																										// postgress
-			Statement statementQueryLogin = connessione.getConnection().createStatement(); // roba di background
-			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin); // esequi la query
+			String queryLogin = "SELECT peso FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'";
+			
+			Statement statementQueryLogin = connessione.getConnection().createStatement();
+			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
 
 			if (rsLogin.next()) {
 
@@ -89,7 +107,7 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT larghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
+			String queryLogin = "SELECT larghezza FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -110,7 +128,7 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT lunghezza FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
+			String queryLogin = "SELECT lunghezza FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -130,7 +148,7 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT specie FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
+			String queryLogin = "SELECT specie FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -151,7 +169,7 @@ public class cartellaClinicaDao {
 		String risultato = new String();
 
 		try {
-			String queryLogin = "SELECT luogo_ritrovamento FROM cartella_clinica WHERE targhetta = '" + idTart + "'";
+			String queryLogin = "SELECT luogo_ritrovamento FROM cartella_clinica WHERE id_tartaruga = '" + idTart + "'";
 
 			Statement statementQueryLogin = connessione.getConnection().createStatement();
 			ResultSet rsLogin = statementQueryLogin.executeQuery(queryLogin);
@@ -273,5 +291,28 @@ public class cartellaClinicaDao {
 		return modello;
 	}
 
+	public void insertAfterRiamm(String nome, String targhetta, String specie, String cartella, String peso, String larghezza, String lunghezza, Date data, String luogo) {
 
+		try {
+
+			String query = "INSERT INTO cartella_clinica (nome_tartaruga,targhetta,specie,id_cartellaclinica,peso,larghezza,lunghezza,data_ingresso,luogo_ritrovamento,costante) VALUES (?,?,?,?,?,?,?,?,?,0)";
+
+			PreparedStatement prepStatementQuery = connessione.getConnection().prepareStatement(query);
+
+			prepStatementQuery.setString(1, nome);
+			prepStatementQuery.setString(2, targhetta);
+			prepStatementQuery.setString(3, specie);
+			prepStatementQuery.setString(4, cartella);
+			prepStatementQuery.setString(5, peso);
+			prepStatementQuery.setString(6, larghezza);
+			prepStatementQuery.setString(7, lunghezza);
+			prepStatementQuery.setDate(8, data);
+			prepStatementQuery.setString(9, luogo);
+			
+			prepStatementQuery.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

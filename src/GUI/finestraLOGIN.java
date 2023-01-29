@@ -26,7 +26,6 @@ public class finestraLOGIN extends JFrame {
 	private JPanel pannelloBase;
 	private JTextField textUsername;
 	private String stringa;
-
 	/**
 	 * Create the frame.
 	 */
@@ -35,7 +34,7 @@ public class finestraLOGIN extends JFrame {
 		setResizable(false);
 		primaFinestraMedico finestra2 = new primaFinestraMedico(this);
 		finestraAltriLavoratori finestraAltri = new finestraAltriLavoratori(this);
-		
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 300, 499, 449);
 		pannelloBase = new JPanel();

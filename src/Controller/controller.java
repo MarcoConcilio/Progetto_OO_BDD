@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 
 import GUI.finestraAltriLavoratori;
 import GUI.finestraCartellaClinica1;
-import GUI.finestraCartellaClinicaRiammissione;
 import GUI.finestraLOGIN;
 import GUI.finestraRiammPrimoacc;
 import GUI.primaFinestraMedico;
@@ -45,13 +44,13 @@ public class controller {
 	}
 
 	public void invioDBSTATO(String testa, String occhi, String naso, String becco, String collo, String pinne,
-			String coda, String idStato) {
+			String coda, String cc) {
 
 		if (testa.isEmpty() || occhi.isEmpty() || naso.isEmpty() || becco.isEmpty() || collo.isEmpty()
 				|| pinne.isEmpty() || coda.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Devi inserire i parametri obbligatori.");
 		} else {
-			stato_tartarugaDao.insertStatoTartaruga(testa, occhi, naso, becco, collo, pinne, coda, idStato);
+			stato_tartarugaDao.insertStatoTartaruga(testa, occhi, naso, becco, collo, pinne, coda);
 		}
 	}
 
@@ -82,31 +81,26 @@ public class controller {
 		}
 	}
 
-	public void tastoIndietro(JPanel pannello1, JPanel pannello2) {
+	public void cambioPanel(JPanel pannello1, JPanel pannello2) {
 		pannello1.setVisible(false);
 		pannello2.setVisible(true);
 	}
 
 	public void cambioFinestraLOG(primaFinestraMedico finestra2, finestraAltriLavoratori finestraAltri, String stringa,
 			JTextField textUsername) {
-		finestraLOGIN finestra = new finestraLOGIN();
 		personaleDao dao = new personaleDao();
+		finestraLOGIN finestra = new finestraLOGIN();
 
 		stringa = textUsername.getText();
 		if (dao.logIn(textUsername.getText())) {
-			if (stringa.charAt(0) == 'M') { // controlla se la matricola è del dottore
+			if (stringa.charAt(0) == 'M') {
 				finestra.setVisible(false);
 				finestra2.setVisible(true);
-			} // da aggiungere una pagina admin che permette di aggiungere lavoratori al
-				// database
-
-			else { // altrimenti ti porta nella pagina degli altri lavoratori
+			} else {
 				finestra.setVisible(false);
 				finestraAltri.setVisible(true);
 			}
-		}
-
-		else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Credenziali errate.");
 		}
 	}
@@ -130,7 +124,7 @@ public class controller {
 
 		if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
 
-			textFieldVisual.setText((tartarugaDao.selectTartarugaStringa(textVisualizzaTarta.getText())));
+			textFieldVisual.setText(textVisualizzaTarta.getText());
 			primoPannello.setVisible(false);
 			secondoPannello.setVisible(true);
 			dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
@@ -141,7 +135,6 @@ public class controller {
 			dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
 			dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
 			dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
-
 			textVisualizzaTarta.setText(null);
 
 		} else {
@@ -245,19 +238,19 @@ public class controller {
 		inserimentoVasca.setText(null);
 	}
 
-	public void inserisciTarghetta(finestraCartellaClinicaRiammissione cartellaRiammissione,
-			JTextField textFieldRicerca, String stringa) {
-		finestraRiammPrimoacc fnestra = new finestraRiammPrimoacc();
-		tartarugaDao tartarugaDao = new tartarugaDao();
-
-		if (tartarugaDao.selectTartaruga(textFieldRicerca.getText())) {
-			stringa = textFieldRicerca.getText();
-			fnestra.setVisible(false);
-			cartellaRiammissione.setVisible(true);
-		} else {
-			JOptionPane.showMessageDialog(null, "Nessun id trovato.");
-		}
-	}
+//	public void inserisciTarghetta(finestraCartellaClinicaRiammissione cartellaRiammissione,
+//			JTextField textFieldRicerca, String stringa) {
+//		finestraRiammPrimoacc fnestra = new finestraRiammPrimoacc();
+//		tartarugaDao tartarugaDao = new tartarugaDao();
+//
+//		if (tartarugaDao.selectTartaruga(textFieldRicerca.getText())) {
+//			stringa = textFieldRicerca.getText();
+//			fnestra.setVisible(false);
+//			cartellaRiammissione.setVisible(true);
+//		} else {
+//			JOptionPane.showMessageDialog(null, "Nessun id trovato.");
+//		}
+//	}
 
 	public void textFieldFalseTrue(JLabel SCRITTURA3, JLabel SCRITTURA4, JLabel SCRITTURA5, JLabel successivo,
 			JLabel lblSCRITTURA, JButton btnNewButton_1, JLabel lblSCRITTURA2, JTextField textFieldRicerca,
@@ -292,13 +285,13 @@ public class controller {
 	public void dispPrimaMedico(JTextField textVisualizzaTarta, JTextField textFieldVisual, JPanel primoPannello,
 			JPanel secondoPannello, JTextField dispNomeTart, JTextField dispIdTart, JTextField dispIdCartClinica,
 			JTextField dispPeso, JTextField dispLarghezza, JTextField dispLunghezza, JTextField dispSpecie,
-			JTextField dispLuogoRitrova) {
+			JTextField dispLuogoRitrova, JTextField textData) {
 		tartarugaDao tartarugaDao = new tartarugaDao();
 		cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
 
 		if (tartarugaDao.selectTartaruga(textVisualizzaTarta.getText())) {
 
-			textFieldVisual.setText((tartarugaDao.selectTartarugaStringa(textVisualizzaTarta.getText())));
+			textFieldVisual.setText(textVisualizzaTarta.getText());
 			primoPannello.setVisible(false);
 			secondoPannello.setVisible(true);
 			dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
@@ -309,6 +302,7 @@ public class controller {
 			dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
 			dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
 			dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
+			textData.setText(clinicaDao.displayData(textFieldVisual.getText()));
 			textVisualizzaTarta.setText(null);
 
 		} else {
@@ -352,4 +346,20 @@ public class controller {
 			comboMesi.setVisible(true);
 		}
 	}
+
+	public void setInvariati(JTextField textFieldRicerca, JPanel pannelloPrimo, JPanel pannelloSecondo,
+			JTextField textNome, JTextField textTarghetta, JTextField textSpecie) {
+		tartarugaDao tartarugaDao = new tartarugaDao();
+		cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
+
+		if (tartarugaDao.selectTartaruga(textFieldRicerca.getText())) {
+			pannelloPrimo.setVisible(false);
+			pannelloSecondo.setVisible(true);
+
+			textNome.setText(tartarugaDao.displayNomeTartaruga(textFieldRicerca.getText()));
+			textTarghetta.setText(tartarugaDao.selectTartarugaStringa(textFieldRicerca.getText()));
+			textSpecie.setText(cartellaClinicaDao.displaySpecieDellaTartaruga(textFieldRicerca.getText()));
+		}
+	}
+
 }

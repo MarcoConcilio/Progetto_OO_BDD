@@ -80,6 +80,8 @@ public class primaFinestraMedico extends JFrame {
 	private JLabel lblNewLabel_27;
 	private JComboBox comboMesi;
 	private JButton btnNewButton_6;
+	private JLabel lblNewLabel_28;
+	private JTextField textData;
 
 	public primaFinestraMedico(finestraLOGIN m1) {
 		finestraMain = m1;
@@ -87,7 +89,7 @@ public class primaFinestraMedico extends JFrame {
 		controller controller = new controller();
 
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(600, 300, 704, 506);
 		backGroundPanel = new JPanel();
 		backGroundPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -127,7 +129,7 @@ public class primaFinestraMedico extends JFrame {
 		JButton btnIndietro2_1 = new JButton("Indietro");
 		btnIndietro2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(statPannello, primoPannello);
+				controller.cambioPanel(statPannello, primoPannello);
 			}
 		});
 		btnIndietro2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -239,50 +241,50 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(terzoPannello, secondoPannello);
+				controller.cambioPanel(terzoPannello, secondoPannello);
 			}
 		});
 		btnNewButton_2.setBounds(10, 11, 100, 23);
 		terzoPannello.add(btnNewButton_2);
 
 		JLabel lblNewLabel_11 = new JLabel("Testa:");
-		lblNewLabel_11.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_11.setBounds(74, 133, 46, 14);
+		lblNewLabel_11.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_11.setBounds(74, 123, 46, 20);
 		terzoPannello.add(lblNewLabel_11);
 
 		JLabel lblNewLabel_12 = new JLabel("Occhi:");
-		lblNewLabel_12.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_12.setBounds(74, 192, 46, 14);
+		lblNewLabel_12.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_12.setBounds(69, 182, 50, 23);
 		terzoPannello.add(lblNewLabel_12);
 
 		JLabel lblNewLabel_13 = new JLabel("Naso:");
-		lblNewLabel_13.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_13.setBounds(74, 250, 46, 14);
+		lblNewLabel_13.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_13.setBounds(74, 241, 46, 18);
 		terzoPannello.add(lblNewLabel_13);
 
 		JLabel lblNewLabel_14 = new JLabel("Becco:");
-		lblNewLabel_14.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_14.setBounds(273, 133, 46, 14);
+		lblNewLabel_14.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_14.setBounds(369, 124, 50, 18);
 		terzoPannello.add(lblNewLabel_14);
 
 		JLabel lblNewLabel_15 = new JLabel("Coda:");
-		lblNewLabel_15.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_15.setBounds(273, 192, 46, 14);
+		lblNewLabel_15.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_15.setBounds(373, 183, 46, 19);
 		terzoPannello.add(lblNewLabel_15);
 
 		JLabel lblNewLabel_16 = new JLabel("Pinne:");
-		lblNewLabel_16.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_16.setBounds(273, 250, 46, 14);
+		lblNewLabel_16.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_16.setBounds(369, 241, 50, 18);
 		terzoPannello.add(lblNewLabel_16);
 
 		JLabel lblNewLabel_17 = new JLabel("Collo:");
-		lblNewLabel_17.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_17.setBounds(457, 192, 46, 14);
+		lblNewLabel_17.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_17.setBounds(203, 306, 46, 18);
 		terzoPannello.add(lblNewLabel_17);
 
 		dispTesta = new JTextField();
 		dispTesta.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dispTesta.setBounds(118, 131, 86, 20);
+		dispTesta.setBounds(118, 119, 171, 32);
 		terzoPannello.add(dispTesta);
 		dispTesta.setColumns(10);
 		dispTesta.setEditable(false);
@@ -290,48 +292,48 @@ public class primaFinestraMedico extends JFrame {
 		dispOcchi = new JTextField();
 		dispOcchi.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispOcchi.setColumns(10);
-		dispOcchi.setBounds(118, 190, 86, 20);
+		dispOcchi.setBounds(118, 178, 171, 32);
 		terzoPannello.add(dispOcchi);
 		dispOcchi.setEditable(false);
 
 		dispNaso = new JTextField();
 		dispNaso.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispNaso.setColumns(10);
-		dispNaso.setBounds(118, 248, 86, 20);
+		dispNaso.setBounds(118, 236, 171, 32);
 		terzoPannello.add(dispNaso);
 		dispNaso.setEditable(false);
 
 		dispBecco = new JTextField();
 		dispBecco.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispBecco.setColumns(10);
-		dispBecco.setBounds(318, 131, 86, 20);
+		dispBecco.setBounds(418, 119, 171, 28);
 		terzoPannello.add(dispBecco);
 		dispBecco.setEditable(false);
 
 		dispCoda = new JTextField();
 		dispCoda.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispCoda.setColumns(10);
-		dispCoda.setBounds(318, 190, 86, 20);
+		dispCoda.setBounds(418, 178, 171, 32);
 		terzoPannello.add(dispCoda);
 		dispCoda.setEditable(false);
 
 		dispPinne = new JTextField();
 		dispPinne.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispPinne.setColumns(10);
-		dispPinne.setBounds(318, 248, 86, 20);
+		dispPinne.setBounds(418, 236, 171, 32);
 		terzoPannello.add(dispPinne);
 		dispPinne.setEditable(false);
 
 		dispCollo = new JTextField();
 		dispCollo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispCollo.setColumns(10);
-		dispCollo.setBounds(500, 190, 86, 20);
+		dispCollo.setBounds(248, 301, 171, 32);
 		terzoPannello.add(dispCollo);
 		dispCollo.setEditable(false);
 
 		JLabel lblNewLabel_19 = new JLabel("Stato delle parti del corpo della tartaruga:");
 		lblNewLabel_19.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel_19.setBounds(74, 69, 358, 32);
+		lblNewLabel_19.setBounds(149, 69, 358, 32);
 		terzoPannello.add(lblNewLabel_19);
 
 		JButton buttonCartClin = new JButton("Aggiungi tartaruga");
@@ -357,7 +359,7 @@ public class primaFinestraMedico extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				controller.dispPrimaMedico(textVisualizzaTarta, textFieldVisual, primoPannello, secondoPannello,
 						dispNomeTart, dispIdTart, dispIdCartClinica, dispPeso, dispLarghezza, dispLunghezza, dispSpecie,
-						dispLuogoRitrova);
+						dispLuogoRitrova, textData);
 			}
 		});
 		btnNewButton.setBounds(479, 99, 28, 32);
@@ -370,7 +372,7 @@ public class primaFinestraMedico extends JFrame {
 
 		textFieldVisual = new JTextField();
 		textFieldVisual.addMouseListener(new MouseAdapter() {
-			@Override // display delle statistiche della tartaruga che selezioni
+			@Override 
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
@@ -401,7 +403,7 @@ public class primaFinestraMedico extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
 				textEntrate.setText(cartellaClinicaDao.selectStatistiche());
-				controller.tastoIndietro(primoPannello, statPannello);
+				controller.cambioPanel(primoPannello, statPannello);
 			}
 		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -452,7 +454,7 @@ public class primaFinestraMedico extends JFrame {
 		btnIndietro2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnIndietro2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(secondoPannello, primoPannello);
+				controller.cambioPanel(secondoPannello, primoPannello);
 			}
 		});
 		btnIndietro2.setBounds(10, 11, 101, 23);
@@ -465,7 +467,7 @@ public class primaFinestraMedico extends JFrame {
 
 		dispNomeTart = new JTextField();
 		dispNomeTart.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dispNomeTart.setBounds(144, 65, 86, 27);
+		dispNomeTart.setBounds(144, 65, 117, 27);
 		secondoPannello.add(dispNomeTart);
 		dispNomeTart.setColumns(10);
 		dispNomeTart.setEditable(false);
@@ -477,20 +479,20 @@ public class primaFinestraMedico extends JFrame {
 
 		dispIdTart = new JTextField();
 		dispIdTart.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		dispIdTart.setBounds(144, 127, 86, 27);
+		dispIdTart.setBounds(144, 127, 117, 27);
 		secondoPannello.add(dispIdTart);
 		dispIdTart.setColumns(10);
 		dispIdTart.setEditable(false);
 
 		JLabel lblNewLabel_3 = new JLabel("Id Cartella clinica:");
 		lblNewLabel_3.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_3.setBounds(21, 196, 124, 14);
+		lblNewLabel_3.setBounds(21, 188, 124, 14);
 		secondoPannello.add(lblNewLabel_3);
 
 		dispIdCartClinica = new JTextField();
 		dispIdCartClinica.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispIdCartClinica.setColumns(10);
-		dispIdCartClinica.setBounds(144, 183, 86, 27);
+		dispIdCartClinica.setBounds(144, 183, 117, 27);
 		secondoPannello.add(dispIdCartClinica);
 		dispIdCartClinica.setEditable(false);
 
@@ -513,7 +515,7 @@ public class primaFinestraMedico extends JFrame {
 		dispPeso.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispPeso.setEditable(false);
 		dispPeso.setColumns(10);
-		dispPeso.setBounds(427, 242, 86, 27);
+		dispPeso.setBounds(427, 242, 118, 27);
 		secondoPannello.add(dispPeso);
 		dispPeso.setEditable(false);
 
@@ -521,7 +523,7 @@ public class primaFinestraMedico extends JFrame {
 		dispLarghezza.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispLarghezza.setEditable(false);
 		dispLarghezza.setColumns(10);
-		dispLarghezza.setBounds(428, 128, 86, 27);
+		dispLarghezza.setBounds(428, 128, 117, 27);
 		secondoPannello.add(dispLarghezza);
 		dispLarghezza.setEditable(false);
 
@@ -529,7 +531,7 @@ public class primaFinestraMedico extends JFrame {
 		dispLunghezza.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispLunghezza.setEditable(false);
 		dispLunghezza.setColumns(10);
-		dispLunghezza.setBounds(427, 183, 86, 27);
+		dispLunghezza.setBounds(427, 183, 118, 27);
 		secondoPannello.add(dispLunghezza);
 		dispLunghezza.setEditable(false);
 
@@ -547,7 +549,7 @@ public class primaFinestraMedico extends JFrame {
 		dispSpecie.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dispSpecie.setEditable(false);
 		dispSpecie.setColumns(10);
-		dispSpecie.setBounds(144, 242, 86, 27);
+		dispSpecie.setBounds(144, 242, 117, 27);
 		secondoPannello.add(dispSpecie);
 		dispSpecie.setEditable(false);
 
@@ -562,7 +564,7 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_1 = new JButton("Successivo");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.tastoIndietro(secondoPannello, terzoPannello);
+				controller.cambioPanel(secondoPannello, terzoPannello);
 				controller.displayTurtlesSTATO(dispTesta, dispOcchi, dispNaso, dispBecco, dispCoda, dispPinne,
 						dispCollo, textFieldVisual);
 			}
@@ -570,6 +572,18 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton_1.setBounds(514, 377, 118, 23);
 		secondoPannello.add(btnNewButton_1);
+		
+		lblNewLabel_28 = new JLabel("Data accesso:");
+		lblNewLabel_28.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
+		lblNewLabel_28.setBounds(51, 309, 94, 23);
+		secondoPannello.add(lblNewLabel_28);
+		
+		textData = new JTextField();
+		textData.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textData.setEditable(false);
+		textData.setColumns(10);
+		textData.setBounds(144, 308, 117, 27);
+		secondoPannello.add(textData);
 
 	}
 }
