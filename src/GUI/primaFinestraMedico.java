@@ -173,28 +173,8 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_4 = new JButton("");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
-
-				if (comboBox.getSelectedIndex() == 0) {
-
-					lblNewLabel_27.setVisible(false);
-					btnNewButton_6.setVisible(false);
-					comboMesi.setVisible(false);
-
-					lblNewLabel_26.setVisible(true);
-					boxAnni.setVisible(true);
-					btnNewButton_5.setVisible(true);
-
-				} else {
-					lblNewLabel_26.setVisible(false);
-					boxAnni.setVisible(false);
-					btnNewButton_5.setVisible(false);
-
-					lblNewLabel_27.setVisible(true);
-					btnNewButton_6.setVisible(true);
-					comboMesi.setVisible(true);
-					//table.setModel(cartellaClinicaDao.statisticheMensili());
-				}
+				controller.setTipoIntervallo(comboBox, boxAnni, lblNewLabel_27, btnNewButton_6, comboMesi,
+						lblNewLabel_26, btnNewButton_5);
 			}
 		});
 		btnNewButton_4.setIcon(new ImageIcon("images\\Cattura (1).png"));
@@ -211,17 +191,10 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_5.setIcon(new ImageIcon("images\\Cattura (1).png"));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				if (boxAnni.getSelectedIndex() == 0) {
-
 				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				table.setModel(cartellaClinicaDao.statisticheAnnuali2(boxAnni.getSelectedItem().toString()));
-
-				// table.setModel(cartellaClinicaDao.statisticheAnnuali());
-//				} else {
-//					System.out.println("ciao");
-//				}
 			}
 		});
 		btnNewButton_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -241,7 +214,7 @@ public class primaFinestraMedico extends JFrame {
 
 		comboMesi = new JComboBox();
 		comboMesi.setModel(new DefaultComboBoxModel(
-				new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+				new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 		comboMesi.setBounds(491, 237, 46, 32);
 		statPannello.add(comboMesi);
 		comboMesi.setVisible(false);
@@ -249,6 +222,10 @@ public class primaFinestraMedico extends JFrame {
 		btnNewButton_6 = new JButton("");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				table.setModel(cartellaClinicaDao.statisticheMensili2(comboMesi.getSelectedItem().toString()));
 			}
 		});
 		btnNewButton_6.setIcon(new ImageIcon("images\\Cattura (1).png"));
@@ -395,20 +372,6 @@ public class primaFinestraMedico extends JFrame {
 		textFieldVisual.addMouseListener(new MouseAdapter() {
 			@Override // display delle statistiche della tartaruga che selezioni
 			public void mouseClicked(MouseEvent e) {
-				tartarugaDao tartarugaDao = new tartarugaDao();
-				cartellaClinicaDao clinicaDao = new cartellaClinicaDao();
-
-//				primoPannello.setVisible(false);
-//				secondoPannello.setVisible(true);
-//				dispNomeTart.setText(tartarugaDao.displayNomeTartaruga(textFieldVisual.getText()));
-//				dispIdTart.setText(tartarugaDao.displayIDTartaruga(textFieldVisual.getText()));
-//				dispIdCartClinica.setText(clinicaDao.displayNumeroCartellaTartaruga(textFieldVisual.getText()));
-//				dispPeso.setText(clinicaDao.displayPesoDellaTartaruga(textFieldVisual.getText()));
-//				dispLarghezza.setText(clinicaDao.displayLarghezzaDellaTartaruga(textFieldVisual.getText()));
-//				dispLunghezza.setText(clinicaDao.displayLunghezzaDellaTartaruga(textFieldVisual.getText()));
-//				dispSpecie.setText(clinicaDao.displaySpecieDellaTartaruga(textFieldVisual.getText()));
-//				dispLuogoRitrova.setText(clinicaDao.displayLuogoRitrovamentoDellaTartaruga(textFieldVisual.getText()));
-
 			}
 		});
 		textFieldVisual.setFont(new Font("Tahoma", Font.PLAIN, 20));

@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Controller.controller;
 import dao.cartellaClinicaDao;
@@ -75,6 +76,7 @@ public class finestraAltriLavoratori extends JFrame {
 	private JLabel lblNewLabel_18;
 	private JButton btnNewButton_4;
 	private JButton btnNewButton_5;
+	private JButton bottoneAnno;
 	private JLabel lblNewLabel_19;
 	private JLabel lblNewLabel_20;
 	private JTextField inserimentoVasca;
@@ -84,8 +86,6 @@ public class finestraAltriLavoratori extends JFrame {
 	private JTextField textId;
 	private JLabel lblNewLabel_24;
 	private JLabel lblNewLabel_25;
-	private JTextField textEntrate;
-	private JTable table;
 	private JLabel lblNewLabel_26;
 	private JScrollPane scrollPane_1;
 	private JTable table_1;
@@ -123,7 +123,7 @@ public class finestraAltriLavoratori extends JFrame {
 		aggPannello.setForeground(new Color(0, 0, 0));
 		aggPannello.setBackground(new Color(165, 206, 218));
 		aggPannello.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		statPannello = new JPanel();
 		statPannello.setForeground(new Color(0, 0, 0));
 		statPannello.setBackground(new Color(165, 206, 218));
@@ -137,7 +137,9 @@ public class finestraAltriLavoratori extends JFrame {
 		primoPannello.setLayout(null);
 		aggPannello.setLayout(null);
 		statPannello.setLayout(null);
-
+		
+	
+		
 		JButton btnIndietro2_1 = new JButton("Indietro");
 		btnIndietro2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,57 +150,98 @@ public class finestraAltriLavoratori extends JFrame {
 		btnIndietro2_1.setBounds(10, 11, 101, 23);
 		statPannello.add(btnIndietro2_1);
 
-		JLabel lblNewLabel_25_1 = new JLabel("Numero di tartarughe totali:");
-		lblNewLabel_25_1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
-		lblNewLabel_25_1.setBounds(29, 94, 225, 25);
-		statPannello.add(lblNewLabel_25_1);
-
-		textEntrate = new JTextField();
+		JTextField textEntrate = new JTextField();
 		textEntrate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textEntrate.setEditable(false);
-		textEntrate.setColumns(10);
 		textEntrate.setBounds(249, 93, 68, 29);
 		statPannello.add(textEntrate);
+		textEntrate.setColumns(10);
+		textEntrate.setEditable(false);
 
-		JLabel lblNewLabel_22_1 = new JLabel("Indicare in che modo visualizzare le statistiche:");
-		lblNewLabel_22_1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
-		lblNewLabel_22_1.setBounds(29, 178, 397, 23);
-		statPannello.add(lblNewLabel_22_1);
+		JLabel lblNewLabel_22 = new JLabel("Indicare in che modo visualizzare le statistiche:");
+		lblNewLabel_22.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_22.setBounds(28, 168, 397, 23);
+		statPannello.add(lblNewLabel_22);
+
+		lblNewLabel_25 = new JLabel("Numero di tartarughe totali:");
+		lblNewLabel_25.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 18));
+		lblNewLabel_25.setBounds(28, 94, 225, 25);
+		statPannello.add(lblNewLabel_25);
 
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Annuale", "Mensile" }));
-		comboBox.setBounds(419, 176, 88, 32);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Annuali", "Mensile" }));
+		comboBox.setBounds(430, 168, 88, 32);
 		statPannello.add(comboBox);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 217, 658, 229);
+		scrollPane.setBounds(10, 280, 658, 166);
 		statPannello.add(scrollPane);
 
-		table = new JTable();
+		JTable table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		JComboBox boxAnni = new JComboBox();
+		boxAnni.setModel(new DefaultComboBoxModel(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026",
+				"2027", "2028", "2029", "2030" }));
+		boxAnni.setBounds(28, 237, 88, 32);
+		statPannello.add(boxAnni);
+		boxAnni.setVisible(false);
 
-		JButton btnNewButton_4_1 = new JButton("");
-		btnNewButton_4_1.addActionListener(new ActionListener() {
+		
+
+		lblNewLabel_23 = new JLabel("New label");
+		lblNewLabel_23.setIcon(new ImageIcon("images\\Squirtle (1).png"));
+		lblNewLabel_23.setBounds(469, 31, 88, 91);
+		statPannello.add(lblNewLabel_23);
+
+		bottoneAnno = new JButton("");
+		bottoneAnno.setIcon(new ImageIcon("images\\Cattura (1).png"));
+		bottoneAnno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
-
-				if (comboBox.getSelectedIndex() == 0) {
-
-					//table.setModel(cartellaClinicaDao.statisticheAnnuali());
-				} else {
-					table.setModel(cartellaClinicaDao.statisticheMensili());
-				}
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				table.setModel(cartellaClinicaDao.statisticheAnnuali2(boxAnni.getSelectedItem().toString()));
 			}
 		});
-		btnNewButton_4_1.setIcon(new ImageIcon("images\\Cattura (1).png"));
-		btnNewButton_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_4_1.setBounds(515, 176, 28, 32);
-		statPannello.add(btnNewButton_4_1);
+		bottoneAnno.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		bottoneAnno.setBounds(126, 237, 28, 32);
+		statPannello.add(bottoneAnno);
 
-		lblNewLabel_26 = new JLabel("New label");
-		lblNewLabel_26.setIcon(new ImageIcon("images\\Squirtle (1).png"));
-		lblNewLabel_26.setBounds(455, 37, 88, 91);
+		lblNewLabel_26 = new JLabel("Indicare l'anno:");
+		lblNewLabel_26.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_26.setBounds(28, 203, 139, 23);
 		statPannello.add(lblNewLabel_26);
+		lblNewLabel_26.setVisible(false);
+		
+		lblNewLabel_27 = new JLabel("Indicare il mese:");
+		lblNewLabel_27.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_27.setBounds(467, 203, 139, 23);
+		statPannello.add(lblNewLabel_27);
+		lblNewLabel_27.setVisible(false);
+
+		JComboBox comboMesi = new JComboBox();
+		comboMesi.setModel(new DefaultComboBoxModel(
+				new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+		comboMesi.setBounds(491, 237, 46, 32);
+		statPannello.add(comboMesi);
+		comboMesi.setVisible(false);
+
+		JButton bottoneMese = new JButton("");
+		bottoneMese.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				table.setModel(cartellaClinicaDao.statisticheMensili2(comboMesi.getSelectedItem().toString()));
+			}
+		});
+		bottoneMese.setIcon(new ImageIcon("images\\Cattura (1).png"));
+		bottoneMese.setBounds(547, 237, 28, 32);
+		statPannello.add(bottoneMese);
+		bottoneAnno.setVisible(false);
+		lblNewLabel_26.setVisible(false);
+		bottoneMese.setVisible(false);
+
 
 		btnNewButton_5 = new JButton("Indietro");
 		btnNewButton_5.addActionListener(new ActionListener() {
@@ -210,6 +253,23 @@ public class finestraAltriLavoratori extends JFrame {
 		btnNewButton_5.setBounds(10, 11, 99, 23);
 		aggPannello.add(btnNewButton_5);
 
+		JButton btnNewButton_61 = new JButton("");
+		btnNewButton_61.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartellaClinicaDao cartellaClinicaDao = new cartellaClinicaDao();
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				table.setModel(cartellaClinicaDao.statisticheMensili2(comboMesi.getSelectedItem().toString()));
+			}
+		});
+		btnNewButton_61.setIcon(new ImageIcon("images\\Cattura (1).png"));
+		btnNewButton_61.setBounds(547, 237, 28, 32);
+		statPannello.add(btnNewButton_61);
+		btnNewButton_5.setVisible(false);
+		lblNewLabel_26.setVisible(false);
+		btnNewButton_61.setVisible(false);
+
+		
 		lblNewLabel_19 = new JLabel("Inserisci dati della tartaruga:");
 		lblNewLabel_19.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 24));
 		lblNewLabel_19.setBounds(50, 184, 297, 36);
@@ -231,17 +291,29 @@ public class finestraAltriLavoratori extends JFrame {
 		aggPannello.add(inserimentoVasca);
 		inserimentoVasca.setColumns(10);
 
-		JButton btnNewButton_6 = new JButton("Invia");
-		btnNewButton_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_6.addActionListener(new ActionListener() {
+		JButton btnNewButton_611 = new JButton("Invia");
+		btnNewButton_611.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_611.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.inviaAltriLavoratori(controller, inserimentoVasca, textNome, textId, aggPannello,
 						primoPannello);
 			}
 		});
-		btnNewButton_6.setBounds(248, 371, 99, 23);
-		aggPannello.add(btnNewButton_6);
+		btnNewButton_611.setBounds(248, 371, 99, 23);
+		aggPannello.add(btnNewButton_611);
 
+		btnNewButton_4 = new JButton("");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.setTipoIntervallo(comboBox, boxAnni, lblNewLabel_27, bottoneMese, comboMesi,
+						lblNewLabel_26, bottoneAnno);
+			}
+		});
+		btnNewButton_4.setIcon(new ImageIcon("images\\Cattura (1).png"));
+		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_4.setBounds(528, 168, 28, 32);
+		statPannello.add(btnNewButton_4);
+		
 		lblNewLabel_22 = new JLabel("Inserisci il numero della vasca:");
 		lblNewLabel_22.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 24));
 		lblNewLabel_22.setBounds(29, 61, 318, 32);

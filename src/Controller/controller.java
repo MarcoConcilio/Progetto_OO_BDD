@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -315,8 +316,9 @@ public class controller {
 		}
 	}
 
-	public void displayTurtlesSTATO(JTextField dispTesta, JTextField dispOcchi, JTextField dispNaso, JTextField dispBecco,
-			JTextField dispCoda, JTextField dispPinne, JTextField dispCollo, JTextField textFieldVisual) {
+	public void displayTurtlesSTATO(JTextField dispTesta, JTextField dispOcchi, JTextField dispNaso,
+			JTextField dispBecco, JTextField dispCoda, JTextField dispPinne, JTextField dispCollo,
+			JTextField textFieldVisual) {
 		statoTartarugaDao statoTartarugaDao = new statoTartarugaDao();
 
 		dispTesta.setText(statoTartarugaDao.displayTestaTartaruga(textFieldVisual.getText()));
@@ -326,5 +328,28 @@ public class controller {
 		dispCoda.setText(statoTartarugaDao.displayCodaTartaruga(textFieldVisual.getText()));
 		dispPinne.setText(statoTartarugaDao.displayPinneTartaruga(textFieldVisual.getText()));
 		dispCollo.setText(statoTartarugaDao.displayColloTartaruga(textFieldVisual.getText()));
+	}
+
+	public void setTipoIntervallo(JComboBox comboBox, JComboBox boxAnni, JLabel lblNewLabel_27, JButton btnNewButton_6,
+			JComboBox comboMesi, JLabel lblNewLabel_26, JButton btnNewButton_5) {
+		if (comboBox.getSelectedIndex() == 0) {
+
+			lblNewLabel_27.setVisible(false);
+			btnNewButton_6.setVisible(false);
+			comboMesi.setVisible(false);
+
+			lblNewLabel_26.setVisible(true);
+			boxAnni.setVisible(true);
+			btnNewButton_5.setVisible(true);
+
+		} else {
+			lblNewLabel_26.setVisible(false);
+			boxAnni.setVisible(false);
+			btnNewButton_5.setVisible(false);
+
+			lblNewLabel_27.setVisible(true);
+			btnNewButton_6.setVisible(true);
+			comboMesi.setVisible(true);
+		}
 	}
 }
