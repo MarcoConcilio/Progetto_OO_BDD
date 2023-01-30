@@ -472,9 +472,9 @@ public class primaFinestraMedico extends JFrame {
 		dispNomeTart.setColumns(10);
 		dispNomeTart.setEditable(false);
 
-		lblNewLabel_2 = new JLabel("ID_Tartaruga:");
+		lblNewLabel_2 = new JLabel("Targhetta:");
 		lblNewLabel_2.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(51, 130, 94, 21);
+		lblNewLabel_2.setBounds(73, 129, 72, 21);
 		secondoPannello.add(lblNewLabel_2);
 
 		dispIdTart = new JTextField();

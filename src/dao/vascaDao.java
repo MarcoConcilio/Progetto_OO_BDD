@@ -3,13 +3,15 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import CollegamentoDataBase.collegamentoDB;
 
 public class vascaDao {
 	collegamentoDB connessione = new collegamentoDB();
 
-	public void insertNumeroVasca(String NumeroVasca, String idVasca) {
-
+	public boolean insertNumeroVasca(String NumeroVasca, String idVasca) {
+		boolean flag = true;
 		try {
 
 			String query = "INSERT INTO numero_vasca (numerovasca, id_vasca) VALUES (?,?)";
@@ -22,7 +24,9 @@ public class vascaDao {
 			prepStatementQuery.executeUpdate();
 
 		} catch (SQLException e) {
+			flag = false;
 			e.printStackTrace();
 		}
+		return flag;
 	}
 }

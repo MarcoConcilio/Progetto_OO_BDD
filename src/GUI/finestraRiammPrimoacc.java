@@ -51,9 +51,6 @@ public class finestraRiammPrimoacc extends JFrame {
 	private JTextField textPinne;
 	private JTextField textCollo;
 
-	/**
-	 * Create the frame.
-	 */
 	public finestraRiammPrimoacc() {
 
 		finestraCartellaClinica1 cartmedica1 = new finestraCartellaClinica1(this);
@@ -267,7 +264,6 @@ public class finestraRiammPrimoacc extends JFrame {
 				controller.inviaCC(controller, stringa, textCartella, textTarghetta, textNome, textTesta, textOcchi,
 						textNaso, textBecco, textCollo, textPinne, textCoda, textLunghezza, textLarghezza, textPeso,
 						textSpecie, textLuogo, textData, pannelloSecondo, pannelloPrimo);
-
 			}
 		});
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));

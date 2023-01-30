@@ -26,15 +26,12 @@ public class finestraLOGIN extends JFrame {
 	private JPanel pannelloBase;
 	private JTextField textUsername;
 	private String stringa;
-	/**
-	 * Create the frame.
-	 */
 
 	public finestraLOGIN() {
 		setResizable(false);
 		primaFinestraMedico finestra2 = new primaFinestraMedico(this);
 		finestraAltriLavoratori finestraAltri = new finestraAltriLavoratori(this);
-	
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 300, 499, 449);
 		pannelloBase = new JPanel();
@@ -58,9 +55,9 @@ public class finestraLOGIN extends JFrame {
 		accedi.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		accedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller controller= new controller();
+				controller controller = new controller();
 				controller.cambioFinestraLOG(finestra2, finestraAltri, stringa, textUsername);
-			}	
+			}
 		});
 		accedi.setBounds(134, 231, 122, 28);
 		pannelloBase.add(accedi);

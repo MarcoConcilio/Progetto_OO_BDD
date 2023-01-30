@@ -231,26 +231,16 @@ public class controller {
 		finestraRiammPrimoacc fnestra = new finestraRiammPrimoacc();
 		vascaDao vascaDao = new vascaDao();
 
-		vascaDao.insertNumeroVasca(inserimentoVasca.getText(), inserimentoVasca.getText());
-		fnestra.setVisible(false);
-		cartmedica1.setVisible(true);
+		if (vascaDao.insertNumeroVasca(inserimentoVasca.getText(), inserimentoVasca.getText())) {
+			fnestra.setVisible(false);
+			cartmedica1.setVisible(true);
 
-		inserimentoVasca.setText(null);
+			inserimentoVasca.setText(null);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Il numero della vasca deve essere compreso tra 1 e 5.");
+		}
 	}
-
-//	public void inserisciTarghetta(finestraCartellaClinicaRiammissione cartellaRiammissione,
-//			JTextField textFieldRicerca, String stringa) {
-//		finestraRiammPrimoacc fnestra = new finestraRiammPrimoacc();
-//		tartarugaDao tartarugaDao = new tartarugaDao();
-//
-//		if (tartarugaDao.selectTartaruga(textFieldRicerca.getText())) {
-//			stringa = textFieldRicerca.getText();
-//			fnestra.setVisible(false);
-//			cartellaRiammissione.setVisible(true);
-//		} else {
-//			JOptionPane.showMessageDialog(null, "Nessun id trovato.");
-//		}
-//	}
 
 	public void textFieldFalseTrue(JLabel SCRITTURA3, JLabel SCRITTURA4, JLabel SCRITTURA5, JLabel successivo,
 			JLabel lblSCRITTURA, JButton btnNewButton_1, JLabel lblSCRITTURA2, JTextField textFieldRicerca,
