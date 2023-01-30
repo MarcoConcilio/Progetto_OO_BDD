@@ -1,28 +1,31 @@
 package Entità;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class cartellaClinica {
 	private String specie;
-	private String lughezza;
+	private String lunghezza;
 	private String larghezza;
 	private String peso;
 	private String luogoRitrovamento;
 	private String idCartellaClinica;
 	private Date dataIngresso;
 	private String matricola;
-	
-	public cartellaClinica(String specie, String lughezza, String larghezza, String peso, String luogoRitrovamento,
-			String idCartellaClinica, Date dataIngresso, String matricola) {
+	private ArrayList<medicoVeterinario> medici = new ArrayList<medicoVeterinario>();
+
+	public cartellaClinica(String specie, String lunghezza, String larghezza, String peso, String luogoRitrovamento,
+			String idCartellaClinica, Date dataIngresso, String matricola, ArrayList<medicoVeterinario> medici) {
 		super();
 		this.specie = specie;
-		this.lughezza = lughezza;
+		this.lunghezza = lunghezza;
 		this.larghezza = larghezza;
 		this.peso = peso;
 		this.luogoRitrovamento = luogoRitrovamento;
 		this.idCartellaClinica = idCartellaClinica;
 		this.dataIngresso = dataIngresso;
 		this.matricola = matricola;
+		this.medici = medici;
 	}
 
 	public String getSpecie() {
@@ -34,11 +37,11 @@ public class cartellaClinica {
 	}
 
 	public String getLughezza() {
-		return lughezza;
+		return lunghezza;
 	}
 
 	public void setLughezza(String lughezza) {
-		this.lughezza = lughezza;
+		this.lunghezza = lughezza;
 	}
 
 	public String getLarghezza() {
@@ -89,7 +92,20 @@ public class cartellaClinica {
 		this.matricola = matricola;
 	}
 
-	
-	
-	
+	public String getLunghezza() {
+		return lunghezza;
+	}
+
+	public void setLunghezza(String lunghezza) {
+		this.lunghezza = lunghezza;
+	}
+
+	public ArrayList<medicoVeterinario> getMedici() {
+		return medici;
+	}
+
+	public void setMedici(ArrayList<medicoVeterinario> medici) {
+		this.medici = medici;
+	}
+
 }

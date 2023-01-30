@@ -1,19 +1,26 @@
 package Entità;
 
+import java.util.ArrayList;
+
 public class centroRecupero {
 	private String nome;
 	private String indirizzo;
 	private int numeroTelefono;
-	private String id_sede;
-	private String e_mail;
+	private String idSede;
+	private String eMail;
+	private ArrayList<tartaruga> tartarughe = new ArrayList<tartaruga>();
+	private ArrayList<personale> lavoratori = new ArrayList<personale>();
 
-	public centroRecupero(String nome, String indirizzo, int numeroTelefono, String id_sede, String e_mail) {
+	public centroRecupero(String nome, String indirizzo, int numeroTelefono, String idSede, String eMail,
+			ArrayList<tartaruga> tartarughe, ArrayList<personale> lavoratori) {
 		super();
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.numeroTelefono = numeroTelefono;
-		this.id_sede = id_sede;
-		this.e_mail = e_mail;
+		this.idSede = idSede;
+		this.eMail = eMail;
+		this.tartarughe = tartarughe;
+		this.lavoratori = lavoratori;
 	}
 
 	public String getNome() {
@@ -40,20 +47,36 @@ public class centroRecupero {
 		this.numeroTelefono = numeroTelefono;
 	}
 
-	public String getId_sede() {
-		return id_sede;
+	public String getIdSede() {
+		return idSede;
 	}
 
-	public void setId_sede(String id_sede) {
-		this.id_sede = id_sede;
+	public void setIdSede(String idSede) {
+		this.idSede = idSede;
 	}
 
-	public String getE_mail() {
-		return e_mail;
+	public String geteMail() {
+		return eMail;
 	}
 
-	public void setE_mail(String e_mail) {
-		this.e_mail = e_mail;
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	public ArrayList<tartaruga> getTartarughe() {
+		return tartarughe;
+	}
+
+	public void setTartarughe(ArrayList<tartaruga> tartarughe) {
+		this.tartarughe = tartarughe;
+	}
+
+	public ArrayList<personale> getLavoratori() {
+		return lavoratori;
+	}
+
+	public void setLavoratori(ArrayList<personale> lavoratori) {
+		this.lavoratori = lavoratori;
 	}
 
 }

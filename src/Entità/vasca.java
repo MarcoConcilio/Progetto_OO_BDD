@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class vasca {
 	private String idVasca;
-	ArrayList<tartaruga> tartaruga = new ArrayList<tartaruga>();
+	private ArrayList<tartaruga> tartaruga = new ArrayList<tartaruga>();
 
-	public vasca(String idVasca) {
+	public vasca(String idVasca, ArrayList<Entità.tartaruga> tartaruga) {
 		super();
 		this.idVasca = idVasca;
+		this.tartaruga = tartaruga;
 	}
 
 	public String getIdVasca() {
@@ -17,6 +18,14 @@ public class vasca {
 
 	public void setIdVasca(String idVasca) {
 		this.idVasca = idVasca;
+	}
+
+	public ArrayList<tartaruga> getTartaruga() {
+		return tartaruga;
+	}
+
+	public void setTartaruga(ArrayList<tartaruga> tartaruga) {
+		this.tartaruga = tartaruga;
 	}
 
 }
